@@ -1,0 +1,61 @@
+// Prisma schema for CBT Speaking Exam - Bahasa Inggris Bisnis (UTW2002)
+// UTS 2025/2026 - FISIP S1 Administrasi Publik
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Mahasiswa terdaftar untuk ujian speaking
+model Student {
+  id           String   @id @default(cuid())
+  nim          String   @unique
+  name         String
+  programStudy String   @default("S1 Administrasi Publik")
+  faculty      String   @default("FISIP")
+  courseCode   String   @default("UTW2002")
+  courseName   String   @default("Bahasa Inggris Bisnis")
+  examStatus   String   @default("NOT_STARTED") // NOT_STARTED | IN_PROGRESS | SUBMITTED
+  startedAt    DateTime?
+  submittedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  answers      SpeakingAnswer[]
+  examLog      ExamLog[]
+}
+
+// Jawaban audio per soal speaking
+model SpeakingAnswer {
+  id              String   @id @default(cuid())
+  studentId       String
+  student         Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  questionId      String   // e.g. "Q1", "Q2", ...
+  questionSection String   // e.g. "Personal Introduction & Read Aloud"
+  audioData       String   // base64-encoded webm audio
+  audioMimeType   String   @default("audio/webm")
+  durationSeconds Float    // panjang rekaman dalam detik
+  attemptCount    Int      @default(1) // jumlah percobaan (re-recording)
+  recordedAt      DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([studentId, questionId])
+  @@index([studentId])
+}
+
+// Log aktivitas ujian (untuk audit & anti-kecurangan)
+model ExamLog {
+  id         String   @id @default(cuid())
+  studentId  String
+  student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  action     String   // LOGIN | START_EXAM | VIEW_QUESTION | RECORD_START | RECORD_STOP | RE_RECORD | SUBMIT | LOGOUT
+  detail     String?
+  timestamp  DateTime @default(now())
+
+  @@index([studentId])
+}
