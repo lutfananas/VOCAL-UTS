@@ -361,6 +361,21 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
         </div>
 
         <BatikFooter />
+
+        {/* Admin access - subtle link at bottom */}
+        <div className="text-center mt-4">
+          <button
+            type="button"
+            onClick={() => {
+              window.location.hash = "admin";
+              window.location.reload();
+            }}
+            className="text-[10px] text-slate-400 hover:text-dongker transition-colors inline-flex items-center gap-1"
+          >
+            <ShieldCheck className="h-3 w-3" />
+            Akses Panel Dosen / Admin
+          </button>
+        </div>
       </div>
     </div>
   );

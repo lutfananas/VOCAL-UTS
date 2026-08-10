@@ -9,6 +9,7 @@ import { InstructionsView } from "@/components/cbt-speaking/instructions-view";
 import { ExamView, ExamQuestionClient } from "@/components/cbt-speaking/exam-view";
 import { SubmitSuccessView } from "@/components/cbt-speaking/submit-success-view";
 import { SplashScreen } from "@/components/cbt-speaking/splash-screen";
+import { AdminView } from "@/components/cbt-speaking/admin-view";
 import { Loader2 } from "lucide-react";
 
 type ViewState =
@@ -17,7 +18,8 @@ type ViewState =
   | "login"
   | "instructions"
   | "exam"
-  | "submitted";
+  | "submitted"
+  | "admin";
 
 interface StudentInfo {
   id: string;
@@ -195,7 +197,23 @@ export default function Home() {
 
   // Splash screen (opening berbudaya VOCAL)
   if (view === "splash") {
+    // Cek URL hash untuk akses admin (#admin)
+    if (typeof window !== "undefined" && window.location.hash === "#admin") {
+      return (
+        <AdminView
+          onExit={() => {
+            window.location.hash = "";
+            setView("login");
+          }}
+        />
+      );
+    }
     return <SplashScreen onFinished={handleSplashFinished} />;
+  }
+
+  // Admin view (dosen panel)
+  if (view === "admin") {
+    return <AdminView onExit={() => setView("login")} />;
   }
 
   // Loading screen
