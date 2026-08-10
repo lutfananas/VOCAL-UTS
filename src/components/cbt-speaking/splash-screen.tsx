@@ -211,15 +211,16 @@ export function SplashScreen({
               <div className="absolute bottom-1/4 left-3 text-merah text-base opacity-70">◆</div>
             </div>
 
-            {/* PHOTO revealed inside gunungan - LARGE close-up */}
+            {/* PHOTO revealed inside gunungan - LARGE portrait close-up */}
             <div className="gunungan-content">
               <div className="relative">
-                {/* Photo container - large close-up with elegant border */}
+                {/* Photo container - portrait oval (taller than wide) for head + shoulders + chest */}
                 <div
-                  className="rounded-full border-4 border-white shadow-2xl overflow-hidden"
+                  className="border-4 border-white shadow-2xl overflow-hidden"
                   style={{
-                    width: "min(240px, 55vw)",
-                    height: "min(240px, 55vw)",
+                    width: "min(220px, 50vw)",
+                    height: "min(300px, 68vw)",
+                    borderRadius: "min(110px, 25vw)",
                     boxShadow: "0 10px 40px rgba(30, 58, 138, 0.25), 0 0 0 2px rgba(200, 16, 46, 0.15)",
                   }}
                 >
