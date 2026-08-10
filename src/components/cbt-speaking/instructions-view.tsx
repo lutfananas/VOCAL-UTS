@@ -84,6 +84,30 @@ export function InstructionsView({
       </header>
 
       <div className="container mx-auto max-w-6xl px-4 py-6 md:py-10 space-y-6">
+        {/* Logo Kampus */}
+        <div className="flex items-center justify-center gap-4 md:gap-8">
+          <div className="flex flex-col items-center gap-1">
+            <img
+              src="/logos/universitas-tulungagung.png"
+              alt="Logo Universitas Tulungagung"
+              className="h-16 md:h-20 w-auto object-contain"
+            />
+            <span className="text-[10px] md:text-xs text-slate-500 font-medium">
+              Universitas Tulungagung
+            </span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <img
+              src="/logos/universitas-bhinneka-pgri.png"
+              alt="Logo Universitas Bhinneka PGRI"
+              className="h-16 md:h-20 w-auto object-contain"
+            />
+            <span className="text-[10px] md:text-xs text-slate-500 font-medium">
+              Universitas Bhinneka PGRI
+            </span>
+          </div>
+        </div>
+
         {/* Hero */}
         <div className="text-center space-y-2">
           <Badge

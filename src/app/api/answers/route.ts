@@ -89,18 +89,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  if (durationSeconds < question.minDurationSec) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: `Durasi rekaman (${durationSeconds.toFixed(
-          0
-        )} detik) belum mencapai minimum (${question.minDurationSec} detik). Silakan rekam ulang dengan durasi yang lebih panjang.`,
-      },
-      { status: 400 }
-    );
-  }
-
   if (durationSeconds > question.recordingTimeSec + 5) {
     return NextResponse.json(
       {

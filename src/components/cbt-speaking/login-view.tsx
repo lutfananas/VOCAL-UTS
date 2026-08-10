@@ -82,10 +82,34 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/40">
       <div className="container mx-auto max-w-6xl px-4 py-6 md:py-10">
-        {/* Header */}
+        {/* Header dengan 2 Logo Kampus */}
         <header className="mb-8 md:mb-12">
-          <div className="flex flex-col items-center text-center gap-3">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-col items-center text-center gap-4">
+            {/* Dua logo kampus */}
+            <div className="flex items-center justify-center gap-4 md:gap-8">
+              <div className="flex flex-col items-center gap-1">
+                <img
+                  src="/logos/universitas-tulungagung.png"
+                  alt="Logo Universitas Tulungagung"
+                  className="h-20 md:h-24 w-auto object-contain"
+                />
+                <span className="text-[10px] md:text-xs text-slate-500 font-medium">
+                  Universitas Tulungagung
+                </span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <img
+                  src="/logos/universitas-bhinneka-pgri.png"
+                  alt="Logo Universitas Bhinneka PGRI"
+                  className="h-20 md:h-24 w-auto object-contain"
+                />
+                <span className="text-[10px] md:text-xs text-slate-500 font-medium">
+                  Universitas Bhinneka PGRI
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 mt-2">
               <div className="rounded-2xl bg-emerald-600 p-3 shadow-lg shadow-emerald-600/20">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>

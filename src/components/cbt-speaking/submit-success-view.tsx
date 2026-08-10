@@ -46,6 +46,30 @@ export function SubmitSuccessView({
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50/40 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
+        {/* Logo Kampus */}
+        <div className="flex items-center justify-center gap-4 md:gap-8 mb-6">
+          <div className="flex flex-col items-center gap-1">
+            <img
+              src="/logos/universitas-tulungagung.png"
+              alt="Logo Universitas Tulungagung"
+              className="h-14 md:h-16 w-auto object-contain"
+            />
+            <span className="text-[10px] text-slate-500 font-medium">
+              Universitas Tulungagung
+            </span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <img
+              src="/logos/universitas-bhinneka-pgri.png"
+              alt="Logo Universitas Bhinneka PGRI"
+              className="h-14 md:h-16 w-auto object-contain"
+            />
+            <span className="text-[10px] text-slate-500 font-medium">
+              Universitas Bhinneka PGRI
+            </span>
+          </div>
+        </div>
+
         <Card className="border-emerald-200 shadow-lg">
           <CardHeader className="text-center pb-4">
             <div className="mx-auto mb-4 rounded-full bg-emerald-100 p-4 w-fit">

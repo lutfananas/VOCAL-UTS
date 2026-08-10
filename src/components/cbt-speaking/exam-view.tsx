@@ -232,14 +232,6 @@ export function ExamView({
       setSubmitError("Belum ada rekaman untuk disimpan.");
       return;
     }
-    if (recorder.durationSec < question.minDurationSec) {
-      setSubmitError(
-        `Durasi rekaman (${Math.floor(
-          recorder.durationSec
-        )}s) belum mencapai minimum (${question.minDurationSec}s). Silakan rekam ulang.`
-      );
-      return;
-    }
     setPhase("submitting");
     setSubmitError(null);
     try {
@@ -316,6 +308,19 @@ export function ExamView({
         <div className="container mx-auto max-w-6xl px-3 md:px-4 py-3">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
+              {/* Logo kecil kampus di header */}
+              <div className="hidden md:flex items-center gap-2 shrink-0">
+                <img
+                  src="/logos/universitas-tulungagung.png"
+                  alt="Universitas Tulungagung"
+                  className="h-8 w-auto object-contain"
+                />
+                <img
+                  src="/logos/universitas-bhinneka-pgri.png"
+                  alt="Universitas Bhinneka PGRI"
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
               <div className="rounded-lg bg-emerald-600 p-2 shadow-sm shrink-0">
                 <Mic className="h-4 w-4 text-white" />
               </div>
@@ -625,8 +630,7 @@ export function ExamView({
                 Perekam Jawaban Speaking
               </CardTitle>
               <CardDescription>
-                Minimum durasi: {question.minDurationSec}s &middot; Maksimum:{" "}
-                {question.recordingTimeSec}s
+                Maksimum durasi rekaman: {question.recordingTimeSec}s
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -712,8 +716,8 @@ export function ExamView({
                     {fmtTime(recorder.durationSec)}
                   </div>
                   <div className="text-sm text-red-700/80">
-                    Sisa waktu: {fmtTime(recRemaining)} &middot; Min:{" "}
-                    {fmtTime(question.minDurationSec)}
+                    Sisa waktu: {fmtTime(recRemaining)} &middot; Maks:{" "}
+                    {fmtTime(question.recordingTimeSec)}
                   </div>
                   <Progress
                     value={
@@ -722,17 +726,8 @@ export function ExamView({
                     className="h-2"
                   />
                   <div className="flex items-center justify-center gap-2 text-xs text-red-700">
-                    {recorder.durationSec < question.minDurationSec ? (
-                      <>
-                        <AlertCircle className="h-3 w-3" />
-                        Belum mencapai minimum. Lanjutkan berbicara.
-                      </>
-                    ) : (
-                      <>
-                        <CheckCircle2 className="h-3 w-3" />
-                        Durasi minimum tercapai. Anda dapat stop kapan saja.
-                      </>
-                    )}
+                    <CheckCircle2 className="h-3 w-3" />
+                    Anda dapat stop kapan saja setelah selesai berbicara.
                   </div>
                   <Button
                     size="lg"
@@ -779,17 +774,6 @@ export function ExamView({
                       />
                     )}
                   </div>
-                  {recorder.durationSec < question.minDurationSec && (
-                    <Alert variant="destructive">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertTitle>Durasi Kurang</AlertTitle>
-                      <AlertDescription>
-                        Durasi rekaman Anda ({Math.floor(recorder.durationSec)}s)
-                        kurang dari minimum ({question.minDurationSec}s). Silakan
-                        rekam ulang.
-                      </AlertDescription>
-                    </Alert>
-                  )}
                   {submitError && (
                     <Alert variant="destructive">
                       <AlertCircle className="h-4 w-4" />
@@ -815,10 +799,7 @@ export function ExamView({
                       </Button>
                       <Button
                         onClick={handleSubmitAnswer}
-                        disabled={
-                          effectivePhase === "submitting" ||
-                          recorder.durationSec < question.minDurationSec
-                        }
+                        disabled={effectivePhase === "submitting"}
                         className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
                       >
                         {effectivePhase === "submitting" ? (
