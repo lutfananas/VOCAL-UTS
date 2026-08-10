@@ -94,26 +94,22 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
             {/* Dua logo kampus */}
             <div className="flex items-center justify-center gap-4 md:gap-8">
               <div className="flex flex-col items-center gap-1">
-                <div className="bg-white rounded-lg p-2 shadow-md border border-emas/40">
-                  <img
+                <img
                     src="/logos/universitas-tulungagung.png"
                     alt="Logo Universitas Tulungagung"
-                    className="h-20 md:h-24 w-auto object-contain"
+                    className="h-20 md:h-24 w-auto object-contain drop-shadow-lg"
                   />
-                </div>
-                <span className="text-[10px] md:text-xs text-sogan font-semibold">
+                <span className="text-[10px] md:text-xs text-dongker font-semibold">
                   Universitas Tulungagung
                 </span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <div className="bg-white rounded-lg p-2 shadow-md border border-emas/40">
-                  <img
+                <img
                     src="/logos/universitas-bhinneka-pgri.png"
                     alt="Logo Universitas Bhinneka PGRI"
-                    className="h-20 md:h-24 w-auto object-contain"
+                    className="h-20 md:h-24 w-auto object-contain drop-shadow-lg"
                   />
-                </div>
-                <span className="text-[10px] md:text-xs text-sogan font-semibold">
+                <span className="text-[10px] md:text-xs text-dongker font-semibold">
                   Universitas Bhinneka PGRI
                 </span>
               </div>
@@ -143,7 +139,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
 
             <Badge
               variant="outline"
-              className="bg-krem-warm border-emas text-sogan-dark font-semibold"
+              className="bg-krem-warm border-emas text-dongker-dark font-semibold"
             >
               ❋ Tahun Akademik 2025/2026 ❋
             </Badge>
@@ -155,9 +151,9 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
         <div className="grid lg:grid-cols-5 gap-6 lg:gap-8 items-start mt-6">
           {/* Left: Info Card + Cultural Info */}
           <aside className="lg:col-span-2 space-y-4">
-            <Card className="border-sogan/30 shadow-md paper-texture">
+            <Card className="border-dongker/30 shadow-md paper-texture">
               <CardHeader className="pb-3">
-                <CardTitle className="text-base flex items-center gap-2 text-sogan-dark font-display">
+                <CardTitle className="text-base flex items-center gap-2 text-dongker-dark font-display">
                   <Info className="h-4 w-4 text-emas" />
                   Informasi Ujian
                 </CardTitle>
@@ -165,35 +161,35 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
               <CardContent className="space-y-3 text-sm">
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-muted-foreground">Mata Kuliah</div>
-                  <div className="col-span-2 font-medium text-sogan-dark">
+                  <div className="col-span-2 font-medium text-dongker-dark">
                     Bahasa Inggris Bisnis (UTW2002)
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-muted-foreground">Program Studi</div>
-                  <div className="col-span-2 font-medium text-sogan-dark">
+                  <div className="col-span-2 font-medium text-dongker-dark">
                     S1 Administrasi Publik
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-muted-foreground">Fakultas</div>
-                  <div className="col-span-2 font-medium text-sogan-dark">FISIP</div>
+                  <div className="col-span-2 font-medium text-dongker-dark">FISIP</div>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-muted-foreground">Dosen Penguji</div>
-                  <div className="col-span-2 font-medium text-sogan-dark">
+                  <div className="col-span-2 font-medium text-dongker-dark">
                     Prof. Dr. Dwi Ima H, M.Hum
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-muted-foreground">Total Soal</div>
-                  <div className="col-span-2 font-medium text-sogan-dark">
+                  <div className="col-span-2 font-medium text-dongker-dark">
                     6 Section &middot; 100 Poin
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-muted-foreground">Durasi</div>
-                  <div className="col-span-2 font-medium text-sogan-dark">
+                  <div className="col-span-2 font-medium text-dongker-dark">
                     ~ 35 Menit
                   </div>
                 </div>
@@ -202,12 +198,12 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
 
             <Card className="border-emas/40 bg-gradient-to-br from-krem-warm to-krem shadow-sm">
               <CardHeader className="pb-3">
-                <CardTitle className="text-base flex items-center gap-2 text-sogan-dark font-display">
+                <CardTitle className="text-base flex items-center gap-2 text-dongker-dark font-display">
                   <Mic className="h-4 w-4 text-emas" />
                   Persiapan Teknis
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-sm text-sogan-dark/90">
+              <CardContent className="space-y-2 text-sm text-dongker-dark/90">
                 <p className="flex gap-2">
                   <span className="font-bold text-emas">1.</span>
                   <span>Gunakan headset/mikrofon yang berfungsi baik.</span>
@@ -241,7 +237,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
 
           {/* Right: Login Form */}
           <main className="lg:col-span-3">
-            <Card className="border-sogan/30 shadow-lg paper-texture batik-card">
+            <Card className="border-dongker/30 shadow-lg paper-texture batik-card">
               <CardHeader className="space-y-2 pt-6">
                 <div className="flex items-center gap-2 text-emas">
                   <ShieldCheck className="h-5 w-5" />
@@ -249,7 +245,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
                     Login Peserta
                   </span>
                 </div>
-                <CardTitle className="text-2xl md:text-3xl text-sogan-dark font-display">
+                <CardTitle className="text-2xl md:text-3xl text-dongker-dark font-display">
                   Masuk dengan NIM Terdaftar
                 </CardTitle>
                 <CardDescription className="text-muted-foreground">
@@ -261,7 +257,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
               <form onSubmit={handleSubmit}>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="nim" className="text-sogan-dark font-medium">
+                    <Label htmlFor="nim" className="text-dongker-dark font-medium">
                       Nomor Induk Mahasiswa (NIM)
                     </Label>
                     <Input
@@ -275,7 +271,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
                       onChange={(e) =>
                         setNim(e.target.value.replace(/\D/g, "").slice(0, 12))
                       }
-                      className="text-lg tracking-wider font-mono h-12 border-sogan/40 bg-krem-warm focus:border-emas focus:ring-emas/20"
+                      className="text-lg tracking-wider font-mono h-12 border-dongker/40 bg-krem-warm focus:border-emas focus:ring-emas/20"
                       disabled={loading}
                       maxLength={12}
                     />
@@ -292,8 +288,8 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
                     </Alert>
                   )}
 
-                  <div className="rounded-lg border border-emas/40 bg-krem-warm p-3 text-xs text-sogan-dark">
-                    <p className="font-medium text-sogan-dark mb-1">
+                  <div className="rounded-lg border border-emas/40 bg-krem-warm p-3 text-xs text-dongker-dark">
+                    <p className="font-medium text-dongker-dark mb-1">
                       Catatan Keamanan:
                     </p>
                     <ul className="space-y-1 list-disc pl-4">
@@ -331,17 +327,17 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
                   <button
                     type="button"
                     onClick={() => setShowDemoNim((v) => !v)}
-                    className="text-xs text-sogan hover:text-emas underline-offset-2 hover:underline"
+                    className="text-xs text-dongker hover:text-emas underline-offset-2 hover:underline"
                   >
                     {showDemoNim ? "Sembunyikan" : "Lihat"} NIM contoh untuk testing
                   </button>
 
                   {showDemoNim && (
                     <div className="w-full rounded-lg border border-emas/40 bg-krem-warm p-3 text-xs space-y-1">
-                      <p className="font-semibold text-sogan-dark mb-2">
+                      <p className="font-semibold text-dongker-dark mb-2">
                         NIM contoh (database seed):
                       </p>
-                      <div className="grid grid-cols-2 gap-x-3 gap-y-1 font-mono text-sogan">
+                      <div className="grid grid-cols-2 gap-x-3 gap-y-1 font-mono text-dongker">
                         <span>220100101 - Ahmad Fauzi</span>
                         <span>220100102 - Siti Nurhaliza</span>
                         <span>220100103 - Budi Santoso</span>

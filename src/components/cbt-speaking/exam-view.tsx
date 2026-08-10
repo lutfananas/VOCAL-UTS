@@ -328,7 +328,7 @@ export function ExamView({
                 <p className="text-xs text-muted-foreground truncate">
                   {student.nim}
                 </p>
-                <p className="text-sm font-semibold text-sogan-dark truncate">
+                <p className="text-sm font-semibold text-dongker-dark truncate">
                   {student.name}
                 </p>
               </div>
@@ -336,7 +336,7 @@ export function ExamView({
             <div className="flex items-center gap-2">
               <Badge
                 variant="outline"
-                className="bg-emas/10 border-emas/50 text-sogan-dark"
+                className="bg-emas/10 border-emas/50 text-dongker-dark"
               >
                 {answeredCount}/{questions.length} terjawab
               </Badge>
@@ -358,9 +358,9 @@ export function ExamView({
       <div className="container mx-auto max-w-6xl px-3 md:px-4 py-4 md:py-6 grid lg:grid-cols-4 gap-4">
         {/* Sidebar Navigation */}
         <aside className="lg:col-span-1 order-2 lg:order-1">
-          <Card className="border-sogan/25 sticky top-24 paper-texture batik-card">
+          <Card className="border-dongker/25 sticky top-24 paper-texture batik-card">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-sogan">
+              <CardTitle className="text-sm text-dongker">
                 Navigasi Soal
               </CardTitle>
             </CardHeader>
@@ -377,7 +377,7 @@ export function ExamView({
                         ? "border-emas bg-emas/10 ring-1 ring-emas/30"
                         : isAnswered
                         ? "border-emas/40 bg-krem-warm hover:bg-emas/10/30"
-                        : "border-sogan/25 bg-krem-warm hover:bg-krem-warm/60"
+                        : "border-dongker/25 bg-krem-warm hover:bg-krem-warm/60"
                     }`}
                   >
                     <div className="flex items-center gap-2">
@@ -386,14 +386,14 @@ export function ExamView({
                           isActive
                             ? "btn-batik border-emas text-white"
                             : isAnswered
-                            ? "bg-emas/15 text-sogan-dark"
+                            ? "bg-emas/15 text-dongker-dark"
                             : "batik-mega text-muted-foreground"
                         }`}
                       >
                         {q.sectionNumber}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs font-semibold text-sogan truncate">
+                        <p className="text-xs font-semibold text-dongker truncate">
                           {q.id} &middot; {q.points} pts
                         </p>
                         <p className="text-[10px] text-muted-foreground truncate">
@@ -407,7 +407,7 @@ export function ExamView({
                   </button>
                 );
               })}
-              <div className="pt-3 mt-3 border-t border-sogan/25">
+              <div className="pt-3 mt-3 border-t border-dongker/25">
                 <Button
                   variant="outline"
                   size="sm"
@@ -431,43 +431,43 @@ export function ExamView({
         {/* Main Content: Question + Recorder */}
         <main className="lg:col-span-3 order-1 lg:order-2 space-y-4">
           {/* Question Header */}
-          <Card className="border-sogan/25 paper-texture batik-card">
+          <Card className="border-dongker/25 paper-texture batik-card">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-3 flex-wrap">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <Badge
                       variant="outline"
-                      className="bg-emas/10 border-emas/50 text-sogan-dark"
+                      className="bg-emas/10 border-emas/50 text-dongker-dark"
                     >
                       Section {question.sectionNumber} dari {questions.length}
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="batik-mega text-sogan text-[10px]"
+                      className="batik-mega text-dongker text-[10px]"
                     >
                       {question.type.replace(/_/g, " ")}
                     </Badge>
                     <Badge
                       variant="outline"
-                      className="bg-emas/10 border-emas/50 text-sogan-dark"
+                      className="bg-emas/10 border-emas/50 text-dongker-dark"
                     >
                       {question.points} Poin
                     </Badge>
                     {question.answered && (
                       <Badge
                         variant="outline"
-                        className="bg-emas/10 border-emas/50 text-sogan-dark"
+                        className="bg-emas/10 border-emas/50 text-dongker-dark"
                       >
                         <CheckCircle2 className="h-3 w-3 mr-1" />
                         Sudah dijawab
                       </Badge>
                     )}
                   </div>
-                  <CardTitle className="text-lg md:text-xl text-sogan-dark leading-snug font-display">
+                  <CardTitle className="text-lg md:text-xl text-dongker-dark leading-snug font-display">
                     {question.title}
                   </CardTitle>
-                  <CardDescription className="text-sogan-dark/75 text-sm">
+                  <CardDescription className="text-dongker-dark/75 text-sm">
                     {question.sectionTitle}
                   </CardDescription>
                 </div>
@@ -476,13 +476,13 @@ export function ExamView({
           </Card>
 
           {/* Scenario & Instruction */}
-          <Card className="border-sogan/25 paper-texture batik-card">
+          <Card className="border-dongker/25 paper-texture batik-card">
             <CardContent className="p-4 md:p-5 space-y-4">
               <div>
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
                   Skenario
                 </h3>
-                <p className="text-sm text-sogan leading-relaxed bg-krem-warm/60/60 rounded-lg p-3 border border-slate-100">
+                <p className="text-sm text-dongker leading-relaxed bg-krem-warm/60/60 rounded-lg p-3 border border-slate-100">
                   {question.scenario}
                 </p>
               </div>
@@ -491,7 +491,7 @@ export function ExamView({
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
                   Instruksi
                 </h3>
-                <p className="text-sm text-sogan leading-relaxed">
+                <p className="text-sm text-dongker leading-relaxed">
                   {question.instruction}
                 </p>
               </div>
@@ -499,13 +499,13 @@ export function ExamView({
               {/* Reading text for READ_ALOUD */}
               {question.readingText && (
                 <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-sogan-dark mb-1.5 flex items-center gap-1">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-dongker-dark mb-1.5 flex items-center gap-1">
                     <Volume2 className="h-3 w-3" />
                     Teks untuk Dibaca
                   </h3>
                   <div className="rounded-lg border border-emas/40 bg-emas/10/40 p-4">
                     <ScrollArea className="max-h-60">
-                      <p className="text-sm text-sogan-dark leading-relaxed font-serif italic">
+                      <p className="text-sm text-dongker-dark leading-relaxed font-serif italic">
                         &ldquo;{question.readingText}&rdquo;
                       </p>
                     </ScrollArea>
@@ -516,12 +516,12 @@ export function ExamView({
               {/* Prompt text for ROLE_PLAY / SPOKEN_RESPONSE / OPINION_SPEAKING */}
               {question.promptText && (
                 <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-marun mb-1.5 flex items-center gap-1">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-merah mb-1.5 flex items-center gap-1">
                     <Volume2 className="h-3 w-3" />
                     Prompt (Apa yang Dikatakan Lawan Bicara)
                   </h3>
-                  <div className="rounded-lg border border-marun/40 bg-marun/5 p-4">
-                    <p className="text-sm text-sogan-dark leading-relaxed font-medium">
+                  <div className="rounded-lg border border-merah/40 bg-merah/5 p-4">
+                    <p className="text-sm text-dongker-dark leading-relaxed font-medium">
                       {question.promptText}
                     </p>
                   </div>
@@ -532,7 +532,7 @@ export function ExamView({
               {question.informalSentences &&
                 question.informalSentences.length > 0 && (
                   <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-sogan-dark mb-1.5">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-dongker-dark mb-1.5">
                       Kalimat Informal (untuk Diubah ke Formal)
                     </h3>
                     <ol className="space-y-2">
@@ -541,10 +541,10 @@ export function ExamView({
                           key={i}
                           className="flex items-start gap-2 text-sm bg-emas/10/40 border border-emas/40 rounded-lg p-3"
                         >
-                          <span className="shrink-0 w-5 h-5 rounded-full bg-emas/30 text-sogan-dark text-[10px] font-bold flex items-center justify-center">
+                          <span className="shrink-0 w-5 h-5 rounded-full bg-emas/30 text-dongker-dark text-[10px] font-bold flex items-center justify-center">
                             {i + 1}
                           </span>
-                          <span className="text-sogan-dark italic">
+                          <span className="text-dongker-dark italic">
                             &ldquo;{s}&rdquo;
                           </span>
                         </li>
@@ -557,16 +557,16 @@ export function ExamView({
               {question.guidingQuestions &&
                 question.guidingQuestions.length > 0 && (
                   <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-mendon mb-1.5">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-dongker mb-1.5">
                       Pertanyaan Panduan (untuk Membantu Menyusun Jawaban)
                     </h3>
                     <ul className="space-y-1.5">
                       {question.guidingQuestions.map((g, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2 text-sm text-sogan"
+                          className="flex items-start gap-2 text-sm text-dongker"
                         >
-                          <span className="text-mendon mt-0.5">&bull;</span>
+                          <span className="text-dongker mt-0.5">&bull;</span>
                           <span>{g}</span>
                         </li>
                       ))}
@@ -583,7 +583,7 @@ export function ExamView({
                   {question.evaluationCriteria.map((c, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2 text-xs text-sogan-dark/75 bg-krem-warm/60/60 rounded px-2 py-1.5 border border-slate-100"
+                      className="flex items-start gap-2 text-xs text-dongker-dark/75 bg-krem-warm/60/60 rounded px-2 py-1.5 border border-slate-100"
                     >
                       <CheckCircle2 className="h-3 w-3 text-emas mt-0.5 shrink-0" />
                       <span>{c}</span>
@@ -596,7 +596,7 @@ export function ExamView({
               <div>
                 <button
                   onClick={() => setShowTips((v) => !v)}
-                  className="flex items-center gap-1 text-xs font-medium text-sogan-dark hover:text-sogan-dark"
+                  className="flex items-center gap-1 text-xs font-medium text-dongker-dark hover:text-dongker-dark"
                 >
                   {showTips ? (
                     <EyeOff className="h-3 w-3" />
@@ -610,7 +610,7 @@ export function ExamView({
                     {question.tips.map((t, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-2 text-xs text-sogan-dark"
+                        className="flex items-start gap-2 text-xs text-dongker-dark"
                       >
                         <Lightbulb className="h-3 w-3 mt-0.5 shrink-0" />
                         <span>{t}</span>
@@ -625,7 +625,7 @@ export function ExamView({
           {/* Recorder Card */}
           <Card className="border-emas/40">
             <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2 text-base text-sogan-dark font-display">
+              <CardTitle className="flex items-center gap-2 text-base text-dongker-dark font-display">
                 <Mic className="h-4 w-4 text-emas" />
                 Perekam Jawaban Speaking
               </CardTitle>
@@ -636,23 +636,23 @@ export function ExamView({
             <CardContent className="space-y-4">
               {/* Preparation Phase */}
               {effectivePhase === "preparing" && (
-                <div className="rounded-lg border border-mendon/40 bg-mendon/5/60 p-5 text-center space-y-3">
-                  <div className="flex items-center justify-center gap-2 text-mendon">
+                <div className="rounded-lg border border-dongker/30 bg-dongker/5/60 p-5 text-center space-y-3">
+                  <div className="flex items-center justify-center gap-2 text-dongker">
                     <Clock className="h-5 w-5" />
                     <span className="font-semibold">
                       Waktu Persiapan Membaca Soal
                     </span>
                   </div>
-                  <div className="text-5xl font-bold text-mendon font-mono tabular-nums">
+                  <div className="text-5xl font-bold text-dongker font-mono tabular-nums">
                     {fmtTime(prepRemaining)}
                   </div>
-                  <p className="text-sm text-mendon/80">
+                  <p className="text-sm text-dongker/80">
                     Bacalah soal dengan saksama. Anda dapat mulai merekam
                     setelah waktu habis atau tekan tombol di bawah.
                   </p>
                   <Button
                     onClick={skipPreparation}
-                    className="bg-mendon hover:bg-mendon/90 text-white"
+                    className="bg-dongker hover:bg-dongker/90 text-white"
                   >
                     Lewati &amp; Mulai Rekam
                   </Button>
@@ -661,12 +661,12 @@ export function ExamView({
 
               {/* Ready to Record */}
               {effectivePhase === "ready-to-record" && (
-                <div className="rounded-lg border border-sogan/25 bg-krem-warm/60/60 p-6 text-center space-y-4">
-                  <div className="flex items-center justify-center gap-2 text-sogan">
+                <div className="rounded-lg border border-dongker/25 bg-krem-warm/60/60 p-6 text-center space-y-4">
+                  <div className="flex items-center justify-center gap-2 text-dongker">
                     <Mic className="h-5 w-5" />
                     <span className="font-semibold">Siap Merekam</span>
                   </div>
-                  <p className="text-sm text-sogan-dark/75 max-w-md mx-auto">
+                  <p className="text-sm text-dongker-dark/75 max-w-md mx-auto">
                     Pastikan mikrofon berfungsi dan ruangan tenang. Klik tombol
                     di bawah untuk mulai merekam. Anda dapat merekam ulang
                     maksimal 3 kali per soal.
@@ -683,7 +683,7 @@ export function ExamView({
                     size="lg"
                     onClick={handleStartRecording}
                     disabled={recorder.status === "requesting"}
-                    className="bg-marun hover:bg-marun/90 text-white shadow-md"
+                    className="bg-merah hover:bg-merah/90 text-white shadow-md"
                   >
                     {recorder.status === "requesting" ? (
                       <>
@@ -702,20 +702,20 @@ export function ExamView({
 
               {/* Recording */}
               {effectivePhase === "recording" && (
-                <div className="rounded-lg border border-marun/40 bg-marun/5 p-5 text-center space-y-4">
-                  <div className="flex items-center justify-center gap-2 text-marun">
+                <div className="rounded-lg border border-merah/40 bg-merah/5 p-5 text-center space-y-4">
+                  <div className="flex items-center justify-center gap-2 text-merah">
                     <span className="relative flex h-3 w-3">
-                      <span className="absolute inline-flex h-full w-full rounded-full bg-marun/50 opacity-75 animate-ping" />
-                      <span className="relative inline-flex h-3 w-3 rounded-full bg-marun" />
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-merah/50 opacity-75 animate-ping" />
+                      <span className="relative inline-flex h-3 w-3 rounded-full bg-merah" />
                     </span>
                     <span className="font-semibold tracking-wide">
                       SEDANG REKAM...
                     </span>
                   </div>
-                  <div className="text-5xl font-bold text-marun font-mono tabular-nums">
+                  <div className="text-5xl font-bold text-merah font-mono tabular-nums">
                     {fmtTime(recorder.durationSec)}
                   </div>
-                  <div className="text-sm text-marun/80">
+                  <div className="text-sm text-merah/80">
                     Sisa waktu: {fmtTime(recRemaining)} &middot; Maks:{" "}
                     {fmtTime(question.recordingTimeSec)}
                   </div>
@@ -725,7 +725,7 @@ export function ExamView({
                     }
                     className="h-2"
                   />
-                  <div className="flex items-center justify-center gap-2 text-xs text-marun">
+                  <div className="flex items-center justify-center gap-2 text-xs text-merah">
                     <CheckCircle2 className="h-3 w-3" />
                     Anda dapat stop kapan saja setelah selesai berbicara.
                   </div>
@@ -753,7 +753,7 @@ export function ExamView({
               {/* Recorded - Playback & Submit */}
               {effectivePhase === "recorded" && (
                 <div className="rounded-lg border border-emas/50 bg-emas/10/40 p-5 space-y-4">
-                  <div className="flex items-center gap-2 text-sogan-dark">
+                  <div className="flex items-center gap-2 text-dongker-dark">
                     <CheckCircle2 className="h-5 w-5" />
                     <span className="font-semibold">Rekaman Selesai</span>
                   </div>
@@ -762,7 +762,7 @@ export function ExamView({
                       <span className="text-xs text-muted-foreground">
                         Durasi rekaman
                       </span>
-                      <span className="text-sm font-bold text-sogan-dark font-mono">
+                      <span className="text-sm font-bold text-dongker-dark font-mono">
                         {fmtTime(recorder.durationSec)}
                       </span>
                     </div>
@@ -783,7 +783,7 @@ export function ExamView({
                   {savedJustNow === question.id ? (
                     <Alert className="border-emas/50 bg-emas/10">
                       <CheckCircle2 className="h-4 w-4 text-emas" />
-                      <AlertDescription className="text-sogan-dark">
+                      <AlertDescription className="text-dongker-dark">
                         Jawaban tersimpan! Pindah ke soal berikutnya...
                       </AlertDescription>
                     </Alert>
@@ -792,7 +792,7 @@ export function ExamView({
                       <Button
                         variant="outline"
                         onClick={handleRerecord}
-                        className="flex-1 border-sogan/40"
+                        className="flex-1 border-dongker/40"
                       >
                         <RotateCcw className="h-4 w-4 mr-2" />
                         Rekam Ulang
@@ -823,7 +823,7 @@ export function ExamView({
               {effectivePhase === "submitting" && (
                 <div className="text-center py-8">
                   <Loader2 className="h-8 w-8 animate-spin text-emas mx-auto" />
-                  <p className="text-sm text-sogan-dark/75 mt-2">
+                  <p className="text-sm text-dongker-dark/75 mt-2">
                     Menyimpan jawaban...
                   </p>
                 </div>
@@ -848,7 +848,7 @@ export function ExamView({
               variant="outline"
               onClick={() => goToQuestion(currentIndex - 1)}
               disabled={currentIndex === 0}
-              className="border-sogan/40"
+              className="border-dongker/40"
             >
               <ChevronLeft className="h-4 w-4 mr-1" />
               Sebelumnya
@@ -860,7 +860,7 @@ export function ExamView({
               <Button
                 variant="outline"
                 onClick={() => goToQuestion(currentIndex + 1)}
-                className="border-sogan/40"
+                className="border-dongker/40"
               >
                 Berikutnya
                 <ChevronRight className="h-4 w-4 ml-1" />
@@ -883,7 +883,7 @@ export function ExamView({
       <Dialog open={showSubmitDialog} onOpenChange={setShowSubmitDialog}>
         <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-sogan-dark">
+            <DialogTitle className="flex items-center gap-2 text-dongker-dark">
               <Send className="h-5 w-5 text-emas" />
               Konfirmasi Submit Ujian
             </DialogTitle>
@@ -893,8 +893,8 @@ export function ExamView({
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-3">
-            <div className="rounded-lg border border-sogan/25 bg-krem-warm/60/60 p-3">
-              <p className="text-sm text-sogan mb-2">
+            <div className="rounded-lg border border-dongker/25 bg-krem-warm/60/60 p-3">
+              <p className="text-sm text-dongker mb-2">
                 Status jawaban Anda:
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -905,8 +905,8 @@ export function ExamView({
                       key={q.id}
                       className={`flex items-center gap-2 text-xs rounded px-2 py-1.5 ${
                         isAnswered
-                          ? "bg-emas/10 text-sogan-dark"
-                          : "bg-marun/5 text-marun"
+                          ? "bg-emas/10 text-dongker-dark"
+                          : "bg-merah/5 text-merah"
                       }`}
                     >
                       {isAnswered ? (
@@ -928,7 +928,7 @@ export function ExamView({
             </div>
             <Alert className="border-emas/40 bg-emas/10/60">
               <AlertCircle className="h-4 w-4 text-emas" />
-              <AlertDescription className="text-sogan-dark text-sm">
+              <AlertDescription className="text-dongker-dark text-sm">
                 Setelah submit, Anda tidak dapat login ulang, mengubah jawaban,
                 atau mengulang ujian. Pastikan koneksi internet stabil saat
                 submit.

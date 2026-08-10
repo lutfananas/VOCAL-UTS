@@ -1,15 +1,16 @@
 "use client";
 
-// SplashScreen - Opening Berbudaya "VOCAL"
-// Voice Of Cultural And Local Wisdom
-// Inovasi Pembelajaran Digital Speaking Berbasis Kearifan Lokal
-// untuk Mewujudkan Kampus Berdampak
+// SplashScreen VOCAL dengan animasi wayang gunungan terbelah
+// - Background: animated scrolling batik parang (biru dongker + merah)
+// - Opening: wayang gunungan (mountain shape) yang terbelah di tengah
+// - Reveal: foto close-up Prof. Dwi Ima (no background)
+// - Logo kampus: transparent PNG (no background)
+
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 interface SplashScreenProps {
   onFinished: () => void;
-  /** Durasi splash screen sebelum auto-dismiss (ms). Default 7000ms */
   duration?: number;
 }
 
@@ -22,19 +23,22 @@ const PROFILES: string[] = [
 
 export function SplashScreen({
   onFinished,
-  duration = 7000,
+  duration = 8000,
 }: SplashScreenProps) {
   const [progress, setProgress] = useState(0);
   const [profileIdx, setProfileIdx] = useState(0);
   const [hide, setHide] = useState(false);
+  const [gununganOpen, setGununganOpen] = useState(false);
 
   useEffect(() => {
+    // Open gunungan after 1.5s (let entrance animation play first)
+    const openTimer = setTimeout(() => setGununganOpen(true), 1500);
+
     const start = Date.now();
     const interval = setInterval(() => {
       const elapsed = Date.now() - start;
       const pct = Math.min(100, (elapsed / duration) * 100);
       setProgress(pct);
-      // Cycle through profile messages
       const idx = Math.min(
         PROFILES.length - 1,
         Math.floor((pct / 100) * PROFILES.length)
@@ -44,10 +48,13 @@ export function SplashScreen({
       if (elapsed >= duration) {
         clearInterval(interval);
         setHide(true);
-        setTimeout(() => onFinished(), 500); // wait for fade-out
+        setTimeout(() => onFinished(), 500);
       }
     }, 50);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(openTimer);
+    };
   }, [duration, onFinished]);
 
   const handleSkip = () => {
@@ -61,27 +68,22 @@ export function SplashScreen({
         hide ? "opacity-0" : "opacity-100"
       }`}
     >
-      {/* Background batik sogan pekat */}
+      {/* === BACKGROUND LAYERS === */}
+
+      {/* Base gradient dongker pekat */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(135deg, #2a1810 0%, #4a2f20 25%, #6b4423 50%, #4a2f20 75%, #2a1810 100%)",
+            "linear-gradient(135deg, #0f1428 0%, #172554 25%, #1e3a8a 50%, #172554 75%, #0f1428 100%)",
         }}
         aria-hidden
       />
 
-      {/* Pattern batik kawung overlay */}
-      <div
-        className="absolute inset-0 opacity-25"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23c9a227' stroke-width='1' opacity='0.6'%3E%3Ccircle cx='25' cy='25' r='15'/%3E%3Cpath d='M25 10 Q19 19 25 25 Q31 19 25 10' fill='%23c9a227' fill-opacity='0.4'/%3E%3Cpath d='M10 25 Q19 19 25 25 Q19 31 10 25' fill='%23c9a227' fill-opacity='0.4'/%3E%3Cpath d='M25 40 Q19 31 25 25 Q31 31 25 40' fill='%23c9a227' fill-opacity='0.4'/%3E%3Cpath d='M40 25 Q31 19 25 25 Q31 31 40 25' fill='%23c9a227' fill-opacity='0.4'/%3E%3Ccircle cx='75' cy='75' r='15'/%3E%3Cpath d='M75 60 Q69 69 75 75 Q81 69 75 60' fill='%23c9a227' fill-opacity='0.4'/%3E%3Cpath d='M60 75 Q69 69 75 75 Q69 81 60 75' fill='%23c9a227' fill-opacity='0.4'/%3E%3Cpath d='M75 90 Q69 81 75 75 Q81 81 75 90' fill='%23c9a227' fill-opacity='0.4'/%3E%3Cpath d='M90 75 Q81 69 75 75 Q81 81 90 75' fill='%23c9a227' fill-opacity='0.4'/%3E%3Ccircle cx='75' cy='25' r='12'/%3E%3Ccircle cx='25' cy='75' r='12'/%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: "100px 100px",
-        }}
-        aria-hidden
-      />
+      {/* Animated scrolling batik parang (background movement) */}
+      <div className="absolute inset-0 batik-parang-anim opacity-50" aria-hidden />
 
-      {/* Glow emas radial */}
+      {/* Radial glow emas in center */}
       <div
         className="absolute inset-0"
         style={{
@@ -91,108 +93,176 @@ export function SplashScreen({
         aria-hidden
       />
 
-      {/* Decorative corner ornaments */}
-      <div className="absolute top-6 left-6 text-3xl md:text-4xl text-emas opacity-60" aria-hidden>❋</div>
-      <div className="absolute top-6 right-6 text-3xl md:text-4xl text-emas opacity-60" aria-hidden>❋</div>
-      <div className="absolute bottom-6 left-6 text-3xl md:text-4xl text-emas opacity-60" aria-hidden>❋</div>
-      <div className="absolute bottom-6 right-6 text-3xl md:text-4xl text-emas opacity-60" aria-hidden>❋</div>
+      {/* Corner ornaments */}
+      <div className="absolute top-6 left-6 text-3xl md:text-4xl text-emas opacity-60 animate-fade-in delay-300" aria-hidden>❋</div>
+      <div className="absolute top-6 right-6 text-3xl md:text-4xl text-emas opacity-60 animate-fade-in delay-300" aria-hidden>❋</div>
+      <div className="absolute bottom-6 left-6 text-3xl md:text-4xl text-emas opacity-60 animate-fade-in delay-300" aria-hidden>❋</div>
+      <div className="absolute bottom-6 right-6 text-3xl md:text-4xl text-emas opacity-60 animate-fade-in delay-300" aria-hidden>❋</div>
 
-      {/* Main content */}
+      {/* === MAIN CONTENT === */}
       <div className="relative z-10 w-full max-w-4xl px-6 py-8 text-center">
-        {/* Top divider */}
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <span className="h-px w-16 md:w-24 bg-emas/60" />
-          <span className="text-emas text-2xl">❋</span>
-          <span className="h-px w-16 md:w-24 bg-emas/60" />
-        </div>
 
-        {/* Logo kampus */}
-        <div className="flex items-center justify-center gap-6 md:gap-10 mb-6">
-          <div className="bg-white/95 rounded-lg p-2 shadow-2xl border-2 border-emas/50">
-            <img
-              src="/logos/universitas-tulungagung.png"
-              alt="Logo Universitas Tulungagung"
-              className="h-16 md:h-20 w-auto object-contain"
-            />
-          </div>
-          <div className="bg-white/95 rounded-lg p-2 shadow-2xl border-2 border-emas/50">
-            <img
-              src="/logos/universitas-bhinneka-pgri.png"
-              alt="Logo Universitas Bhinneka PGRI"
-              className="h-16 md:h-20 w-auto object-contain"
-            />
-          </div>
+        {/* Top: Logos (transparent PNGs) */}
+        <div className="flex items-center justify-center gap-6 md:gap-10 mb-6 animate-fade-up">
+          <img
+            src="/logos/universitas-tulungagung.png"
+            alt="Logo Universitas Tulungagung"
+            className="h-16 md:h-20 w-auto object-contain drop-shadow-lg"
+          />
+          <img
+            src="/logos/universitas-bhinneka-pgri.png"
+            alt="Logo Universitas Bhinneka PGRI"
+            className="h-16 md:h-20 w-auto object-contain drop-shadow-lg"
+          />
         </div>
 
         {/* Sambutan Sugeng Rawuh */}
-        <p className="font-display text-base md:text-xl text-emas-light italic mb-2 animate-pulse">
+        <p className="font-display text-base md:text-xl text-emas-light italic mb-2 animate-fade-up delay-200">
           ❋ Sugeng Rawuh ❋
         </p>
 
-        {/* Title VOCAL */}
-        <h1 className="font-display text-5xl md:text-7xl font-bold text-emas mb-2 tracking-wide drop-shadow-lg">
+        {/* === TITLE VOCAL with shimmer === */}
+        <h1 className="font-display text-6xl md:text-8xl font-bold text-emas mb-2 tracking-wide shimmer-gold animate-scale-in delay-500">
           VOCAL
         </h1>
-        <p className="text-xs md:text-sm text-krem/90 italic mb-6 tracking-wide font-display">
+        <p className="text-xs md:text-sm text-krem/90 italic mb-6 tracking-wide font-display animate-fade-up delay-700">
           Voice Of Cultural And Local Wisdom
         </p>
 
         {/* Subtitle / Tagline */}
-        <div className="max-w-2xl mx-auto mb-8 space-y-2">
+        <div className="max-w-2xl mx-auto mb-8 space-y-1.5 animate-fade-up delay-1000">
           <p className="text-sm md:text-base text-krem font-display leading-relaxed">
             Inovasi Pembelajaran Digital Speaking
           </p>
           <p className="text-sm md:text-base text-krem/85 font-display italic leading-relaxed">
             Berbasis Kearifan Lokal untuk Mewujudkan
           </p>
-          <p className="text-base md:text-xl text-emas-light font-display font-semibold leading-relaxed">
+          <p className="text-lg md:text-2xl text-emas-light font-display font-semibold leading-relaxed">
             Kampus Berdampak
           </p>
         </div>
 
         {/* Divider */}
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <span className="h-px w-12 bg-emas/50" />
-          <span className="text-emas">❋</span>
-          <span className="h-px w-12 bg-emas/50" />
+        <div className="flex items-center justify-center gap-3 mb-8 animate-fade-in delay-1500">
+          <span className="h-px w-16 md:w-24 bg-emas/60" />
+          <span className="text-emas text-xl">❋</span>
+          <span className="h-px w-16 md:w-24 bg-emas/60" />
         </div>
 
-        {/* Professor profile */}
-        <div className="flex flex-col items-center gap-3 mb-8">
-          <div className="relative">
-            {/* Decorative ring */}
-            <div className="absolute -inset-2 rounded-full border-2 border-emas/50 animate-spin-slow" />
-            <div className="absolute -inset-3 rounded-full border border-emas/30" />
-            {/* Photo */}
-            <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-emas shadow-2xl">
-              <img
-                src="/logos/prof-dwi-ima.jpeg"
-                alt="Foto Prof. Dr. Dra. Hj. Dwi Ima Herminingsih, M.Hum"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-            {/* Corner stars */}
-            <span className="absolute -top-1 -left-1 text-emas text-lg">❋</span>
-            <span className="absolute -top-1 -right-1 text-emas text-lg">❋</span>
-            <span className="absolute -bottom-1 -left-1 text-emas text-lg">❋</span>
-            <span className="absolute -bottom-1 -right-1 text-emas text-lg">❋</span>
-          </div>
+        {/* === WAYANG GUNUNGAN TERBELAH + PHOTO REVEAL === */}
+        <div className="relative mx-auto mb-8" style={{ width: "min(360px, 80vw)", height: "min(380px, 85vw)" }}>
+          {/* Decorative outer rings - rotating */}
+          <div
+            className="absolute rounded-full border-2 border-emas/40 animate-spin-slow"
+            style={{
+              top: "50%",
+              left: "50%",
+              width: "min(360px, 80vw)",
+              height: "min(360px, 80vw)",
+              transform: "translate(-50%, -50%)",
+            }}
+            aria-hidden
+          />
+          <div
+            className="absolute rounded-full border border-emas/30 animate-spin-reverse"
+            style={{
+              top: "50%",
+              left: "50%",
+              width: "min(330px, 73vw)",
+              height: "min(330px, 73vw)",
+              transform: "translate(-50%, -50%)",
+            }}
+            aria-hidden
+          />
 
-          <div className="space-y-1 mt-2">
-            <p className="text-base md:text-lg font-bold text-krem font-display">
-              Prof. Dr. Dra. Hj. Dwi Ima Herminingsih, M.Hum
-            </p>
-            <p className="text-xs md:text-sm text-emas-light italic">
-              Dosen Pengampu Mata Kuliah Bahasa Inggris Bisnis (UTW2002)
-            </p>
-            <p className="text-[10px] md:text-xs text-krem/60">
-              FISIP &middot; S1 Administrasi Publik &middot; Universitas Tulungagung
-            </p>
+          {/* Glowing circle behind gunungan */}
+          <div
+            className={`absolute rounded-full transition-all duration-1000 ${
+              gununganOpen ? "gunungan-glow" : ""
+            }`}
+            style={{
+              top: "50%",
+              left: "50%",
+              width: "min(300px, 67vw)",
+              height: "min(300px, 67vw)",
+              transform: "translate(-50%, -50%)",
+              background: gununganOpen
+                ? "radial-gradient(circle, rgba(201,162,39,0.25) 0%, transparent 70%)"
+                : "transparent",
+            }}
+            aria-hidden
+          />
+
+          {/* GUNUNGAN HALVES - closed at start, split open when gununganOpen */}
+          <div
+            className={`absolute inset-0 ${gununganOpen ? "gunungan-open" : ""}`}
+            style={{ width: "min(280px, 62vw)", height: "min(340px, 76vw)", margin: "auto" }}
+          >
+            {/* Left half of gunungan */}
+            <div className="gunungan-left">
+              <div className="gunungan-pattern" />
+              {/* Decorative ornament on left half */}
+              <div className="absolute top-1/4 right-2 text-emas text-2xl opacity-70">❋</div>
+              <div className="absolute bottom-1/4 right-4 text-emas text-xl opacity-60">❋</div>
+            </div>
+            {/* Right half of gunungan */}
+            <div className="gunungan-right">
+              <div className="gunungan-pattern" />
+              {/* Decorative ornament on right half */}
+              <div className="absolute top-1/4 left-2 text-emas text-2xl opacity-70">❋</div>
+              <div className="absolute bottom-1/4 left-4 text-emas text-xl opacity-60">❋</div>
+            </div>
+
+            {/* PHOTO revealed inside gunungan */}
+            <div className="gunungan-content">
+              {/* Photo container - large close-up */}
+              <div className="relative">
+                {/* Decorative ring around photo */}
+                <div
+                  className="rounded-full border-4 border-emas shadow-2xl overflow-hidden"
+                  style={{
+                    width: "min(220px, 50vw)",
+                    height: "min(220px, 50vw)",
+                  }}
+                >
+                  <img
+                    src="/logos/prof-dwi-ima.png"
+                    alt="Foto Prof. Dr. Dra. Hj. Dwi Ima Herminingsih, M.Hum"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                {/* Corner stars on photo */}
+                <span className="absolute -top-2 -left-2 text-emas text-lg">❋</span>
+                <span className="absolute -top-2 -right-2 text-emas text-lg">❋</span>
+                <span className="absolute -bottom-2 -left-2 text-emas text-lg">❋</span>
+                <span className="absolute -bottom-2 -right-2 text-emas text-lg">❋</span>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Professor name & info (revealed after gunungan opens) */}
+        <div
+          className={`space-y-1 transition-all duration-700 ${
+            gununganOpen
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
+          }`}
+          style={{ transitionDelay: gununganOpen ? "1s" : "0s" }}
+        >
+          <p className="text-lg md:text-2xl font-bold text-krem font-display">
+            Prof. Dr. Dra. Hj. Dwi Ima Herminingsih, M.Hum
+          </p>
+          <p className="text-xs md:text-sm text-emas-light italic">
+            Dosen Pengampu Mata Kuliah Bahasa Inggris Bisnis (UTW2002)
+          </p>
+          <p className="text-[10px] md:text-xs text-krem/60">
+            FISIP &middot; S1 Administrasi Publik &middot; Universitas Tulungagung
+          </p>
         </div>
 
         {/* Loading progress */}
-        <div className="max-w-md mx-auto space-y-2">
+        <div className="max-w-md mx-auto space-y-2 mt-6">
           <div className="flex items-center justify-center gap-2 text-emas-light">
             <Loader2 className="h-4 w-4 animate-spin" />
             <span className="text-xs md:text-sm font-display italic">
@@ -228,21 +298,6 @@ export function SplashScreen({
           Lewati pembuka →
         </button>
       </div>
-
-      {/* Custom CSS for slow spin */}
-      <style jsx>{`
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-      `}</style>
     </div>
   );
 }

@@ -72,7 +72,7 @@ export function CulturalHero({
 export function SugengRawuhBanner() {
   return (
     <div className="text-center space-y-1 mb-2">
-      <p className="font-display text-lg md:text-xl text-sogan-dark italic">
+      <p className="font-display text-lg md:text-xl text-dongker-dark italic">
         Sugeng Rawuh
       </p>
       <p className="text-xs text-muted-foreground tracking-wider">
@@ -99,7 +99,7 @@ export function SectionHeader({
         {icon && <span className="text-emas">{icon}</span>}
         <span className="h-px w-8 bg-emas" />
       </div>
-      <h2 className="text-xl md:text-2xl font-bold text-sogan-dark font-display">
+      <h2 className="text-xl md:text-2xl font-bold text-dongker-dark font-display">
         {title}
       </h2>
       {subtitle && (
@@ -117,29 +117,29 @@ export function TulungagungInfoCard() {
     <div className="rounded-lg border border-emas/40 bg-gradient-to-br from-krem-warm to-krem p-4 space-y-2">
       <div className="flex items-center gap-2 mb-2">
         <span className="text-emas">❋</span>
-        <h4 className="text-sm font-bold text-sogan-dark font-display tracking-wide">
+        <h4 className="text-sm font-bold text-dongker-dark font-display tracking-wide">
           Tetang Tulungagung
         </h4>
         <span className="text-emas">❋</span>
       </div>
       <ul className="text-xs text-muted-foreground space-y-1.5 leading-relaxed">
         <li>
-          <span className="font-semibold text-sogan">Kerajinan Onyx</span> —
+          <span className="font-semibold text-dongker">Kerajinan Onyx</span> —
           Tulungagung terkenal sebagai pusat kerajinan batu onyx, dengan motif
-          khas berwarna cokelat-krem seperi tema ujian ini.
+          khas berwarna biru dongker dan krem seperi tema ujian ini.
         </li>
         <li>
-          <span className="font-semibold text-sogan">Batik Tulungagung</span> —
+          <span className="font-semibold text-dongker">Batik Tulungagung</span> —
           Memiliki motif khas seperti &ldquo;Sekar Jagad&rdquo; dan &ldquo;Kembang
-          Wijaya&rdquo; dengan warna sogan khas Jawa.
+          Wijaya&rdquo; dengan kombinasi biru dongker dan merah khas Jawa.
         </li>
         <li>
-          <span className="font-semibold text-sogan">Pantai Popoh</span> —
+          <span className="font-semibold text-dongker">Pantai Popoh</span> —
           Salah satu pantai terkenal di pesisir selatan, dengan ombak tenang
           khas Samudra Indonesia.
         </li>
         <li>
-          <span className="font-semibold text-sogan">Kuliner Gepeng</span> —
+          <span className="font-semibold text-dongker">Kuliner Gepeng</span> —
           Tape ketan gepeng dan kue tradisional khas Tulungagung.
         </li>
       </ul>
@@ -160,7 +160,7 @@ export function BatikFooter() {
           &ldquo;Budaya bukan batas, melainkan identitas&rdquo; — Filosofi
           Javanese
         </p>
-        <p className="text-[10px] text-sogan mt-2">
+        <p className="text-[10px] text-dongker mt-2">
           &copy; {new Date().getFullYear()} FISIP &middot; Sistem CBT Speaking
           Examination &middot; Tema Budaya Tulungagung
         </p>

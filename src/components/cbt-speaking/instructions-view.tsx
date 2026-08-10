@@ -69,7 +69,7 @@ export function InstructionsView({
               <p className="text-xs text-muted-foreground truncate">
                 {student.faculty} &middot; {student.programStudy}
               </p>
-              <p className="text-sm font-semibold text-sogan-dark truncate">
+              <p className="text-sm font-semibold text-dongker-dark truncate">
                 {student.name}{" "}
                 <span className="text-muted-foreground font-normal">
                   ({student.nim})
@@ -81,7 +81,7 @@ export function InstructionsView({
             variant="ghost"
             size="sm"
             onClick={onLogout}
-            className="text-sogan hover:text-marun hover:bg-marun/5"
+            className="text-dongker hover:text-merah hover:bg-merah/5"
           >
             <LogOut className="h-4 w-4 mr-1" />
             Logout
@@ -94,26 +94,22 @@ export function InstructionsView({
         <div className="flex flex-col items-center gap-3">
           <div className="flex items-center justify-center gap-4 md:gap-8">
             <div className="flex flex-col items-center gap-1">
-              <div className="bg-white rounded-lg p-1.5 shadow-md border border-emas/40">
-                <img
+              <img
                   src="/logos/universitas-tulungagung.png"
                   alt="Logo Universitas Tulungagung"
-                  className="h-16 md:h-20 w-auto object-contain"
+                  className="h-16 md:h-20 w-auto object-contain drop-shadow-lg"
                 />
-              </div>
-              <span className="text-[10px] md:text-xs text-sogan font-semibold">
+              <span className="text-[10px] md:text-xs text-dongker font-semibold">
                 Universitas Tulungagung
               </span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <div className="bg-white rounded-lg p-1.5 shadow-md border border-emas/40">
-                <img
+              <img
                   src="/logos/universitas-bhinneka-pgri.png"
                   alt="Logo Universitas Bhinneka PGRI"
-                  className="h-16 md:h-20 w-auto object-contain"
+                  className="h-16 md:h-20 w-auto object-contain drop-shadow-lg"
                 />
-              </div>
-              <span className="text-[10px] md:text-xs text-sogan font-semibold">
+              <span className="text-[10px] md:text-xs text-dongker font-semibold">
                 Universitas Bhinneka PGRI
               </span>
             </div>
@@ -125,11 +121,11 @@ export function InstructionsView({
         <div className="text-center space-y-3">
           <Badge
             variant="outline"
-            className="bg-krem-warm border-emas text-sogan-dark font-semibold"
+            className="bg-krem-warm border-emas text-dongker-dark font-semibold"
           >
             ❋ {EXAM_META.title} ❋
           </Badge>
-          <h1 className="text-2xl md:text-3xl font-bold text-sogan-dark font-display">
+          <h1 className="text-2xl md:text-3xl font-bold text-dongker-dark font-display">
             {EXAM_META.courseName} ({EXAM_META.courseCode})
           </h1>
           <p className="text-sm text-muted-foreground italic font-display">
@@ -141,22 +137,22 @@ export function InstructionsView({
 
         {/* Summary Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <Card className="border-sogan/30 paper-texture batik-card">
+          <Card className="border-dongker/30 paper-texture batik-card">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="rounded-lg bg-sogan/15 p-2">
-                  <ListChecks className="h-5 w-5 text-sogan" />
+                <div className="rounded-lg bg-dongker/15 p-2">
+                  <ListChecks className="h-5 w-5 text-dongker" />
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Total Section</p>
-                  <p className="text-xl font-bold text-sogan-dark font-display">
+                  <p className="text-xl font-bold text-dongker-dark font-display">
                     {EXAM_META.totalQuestions}
                   </p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card className="border-sogan/30 paper-texture batik-card">
+          <Card className="border-dongker/30 paper-texture batik-card">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="rounded-lg bg-emas/15 p-2">
@@ -164,37 +160,37 @@ export function InstructionsView({
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Durasi ~</p>
-                  <p className="text-xl font-bold text-sogan-dark font-display">
+                  <p className="text-xl font-bold text-dongker-dark font-display">
                     {EXAM_META.totalDurationMin} mnt
                   </p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card className="border-sogan/30 paper-texture batik-card">
+          <Card className="border-dongker/30 paper-texture batik-card">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="rounded-lg bg-mendon/15 p-2">
-                  <CheckCircle2 className="h-5 w-5 text-mendon" />
+                <div className="rounded-lg bg-dongker/15 p-2">
+                  <CheckCircle2 className="h-5 w-5 text-dongker" />
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Total Poin</p>
-                  <p className="text-xl font-bold text-sogan-dark font-display">
+                  <p className="text-xl font-bold text-dongker-dark font-display">
                     {EXAM_META.totalPoints}
                   </p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card className="border-sogan/30 paper-texture batik-card">
+          <Card className="border-dongker/30 paper-texture batik-card">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="rounded-lg bg-marun/15 p-2">
-                  <Volume2 className="h-5 w-5 text-marun" />
+                <div className="rounded-lg bg-merah/15 p-2">
+                  <Volume2 className="h-5 w-5 text-merah" />
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Format</p>
-                  <p className="text-xl font-bold text-sogan-dark font-display">
+                  <p className="text-xl font-bold text-dongker-dark font-display">
                     Audio
                   </p>
                 </div>
@@ -204,16 +200,16 @@ export function InstructionsView({
         </div>
 
         {isResume && (
-          <Card className="border-mendon/40 bg-mendon/5">
+          <Card className="border-dongker/30 bg-dongker/5">
             <CardContent className="p-4 flex items-start gap-3">
-              <div className="rounded-lg bg-mendon/15 p-2 shrink-0">
-                <AlertTriangle className="h-5 w-5 text-mendon" />
+              <div className="rounded-lg bg-dongker/15 p-2 shrink-0">
+                <AlertTriangle className="h-5 w-5 text-dongker" />
               </div>
               <div className="space-y-1">
-                <p className="font-semibold text-mendon">
+                <p className="font-semibold text-dongker">
                   Melanjutkan Sesi Ujian
                 </p>
-                <p className="text-sm text-sogan-dark/80">
+                <p className="text-sm text-dongker-dark/80">
                   Anda sudah menjawab {answeredQuestionIds.length} dari{" "}
                   {EXAM_META.totalQuestions} soal. Anda dapat melanjutkan dari
                   soal yang belum dijawab atau memperbaiki jawaban yang sudah
@@ -231,9 +227,9 @@ export function InstructionsView({
         )}
 
         {/* Petunjuk Umum */}
-        <Card className="border-sogan/30 shadow-sm paper-texture batik-card">
+        <Card className="border-dongker/30 shadow-sm paper-texture batik-card">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-sogan-dark font-display">
+            <CardTitle className="flex items-center gap-2 text-dongker-dark font-display">
               <PlayCircle className="h-5 w-5 text-emas" />
               Petunjuk Umum
             </CardTitle>
@@ -244,10 +240,10 @@ export function InstructionsView({
           </CardHeader>
           <CardContent>
             <ScrollArea className="h-64 rounded-lg border border-emas/30 bg-krem-warm/60 p-4 batik-scroll">
-              <ol className="space-y-3 text-sm text-sogan-dark">
+              <ol className="space-y-3 text-sm text-dongker-dark">
                 {EXAM_META.instructions.map((ins, i) => (
                   <li key={i} className="flex gap-3">
-                    <span className="shrink-0 w-7 h-7 rounded-full bg-sogan text-krem text-xs font-bold flex items-center justify-center font-display">
+                    <span className="shrink-0 w-7 h-7 rounded-full bg-dongker text-krem text-xs font-bold flex items-center justify-center font-display">
                       {i + 1}
                     </span>
                     <span className="leading-relaxed">{ins}</span>
@@ -259,9 +255,9 @@ export function InstructionsView({
         </Card>
 
         {/* Daftar Soal */}
-        <Card className="border-sogan/30 shadow-sm paper-texture batik-card">
+        <Card className="border-dongker/30 shadow-sm paper-texture batik-card">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-sogan-dark font-display">
+            <CardTitle className="flex items-center gap-2 text-dongker-dark font-display">
               <ListChecks className="h-5 w-5 text-emas" />
               Daftar Section Ujian
             </CardTitle>
@@ -280,7 +276,7 @@ export function InstructionsView({
                   className={`rounded-lg border p-4 transition-colors ${
                     answered
                       ? "border-emas/60 bg-emas/5"
-                      : "border-sogan/30 bg-krem-warm/40"
+                      : "border-dongker/30 bg-krem-warm/40"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -289,7 +285,7 @@ export function InstructionsView({
                         className={`shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-krem font-bold font-display ${
                           answered
                             ? "btn-batik border-emas"
-                            : "bg-sogan/70 border border-sogan"
+                            : "bg-dongker/70 border border-dongker"
                         }`}
                       >
                         {q.sectionNumber}
@@ -301,21 +297,21 @@ export function InstructionsView({
                           </span>
                           <Badge
                             variant="secondary"
-                            className="text-[10px] bg-krem text-sogan-dark border border-sogan/30"
+                            className="text-[10px] bg-krem text-dongker-dark border border-dongker/30"
                           >
                             {q.type.replace(/_/g, " ")}
                           </Badge>
                           {answered && (
                             <Badge
                               variant="outline"
-                              className="text-[10px] bg-emas/10 border-emas text-sogan-dark"
+                              className="text-[10px] bg-emas/10 border-emas text-dongker-dark"
                             >
                               <CheckCircle2 className="h-3 w-3 mr-1" />
                               Sudah dijawab
                             </Badge>
                           )}
                         </div>
-                        <h3 className="font-semibold text-sogan-dark text-sm leading-snug font-display">
+                        <h3 className="font-semibold text-dongker-dark text-sm leading-snug font-display">
                           {q.title}
                         </h3>
                         <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
@@ -352,9 +348,9 @@ export function InstructionsView({
                 type="checkbox"
                 checked={confirmed}
                 onChange={(e) => setConfirmed(e.target.checked)}
-                className="mt-1 h-4 w-4 rounded border-sogan text-emas focus:ring-emas/30"
+                className="mt-1 h-4 w-4 rounded border-dongker text-emas focus:ring-emas/30"
               />
-              <span className="text-sm text-sogan-dark leading-relaxed">
+              <span className="text-sm text-dongker-dark leading-relaxed">
                 Saya telah membaca dan memahami seluruh petunjuk ujian. Saya
                 menyatakan bahwa jawaban yang akan saya rekam adalah murni hasil
                 kerja sendiri tanpa bantuan pihak lain atau alat terlarang. Saya
@@ -367,7 +363,7 @@ export function InstructionsView({
               <Button
                 variant="outline"
                 onClick={onLogout}
-                className="border-sogan/40 text-sogan hover:bg-sogan/5"
+                className="border-dongker/40 text-dongker hover:bg-dongker/5"
               >
                 <LogOut className="h-4 w-4 mr-1" />
                 Logout &amp; Batalkan

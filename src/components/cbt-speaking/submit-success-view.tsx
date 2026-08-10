@@ -51,26 +51,22 @@ export function SubmitSuccessView({
         <div className="flex flex-col items-center gap-3 mb-6">
           <div className="flex items-center justify-center gap-4 md:gap-8">
             <div className="flex flex-col items-center gap-1">
-              <div className="bg-white rounded-lg p-1.5 shadow-md border border-emas/40">
-                <img
+              <img
                   src="/logos/universitas-tulungagung.png"
                   alt="Logo Universitas Tulungagung"
-                  className="h-14 md:h-16 w-auto object-contain"
+                  className="h-14 md:h-16 w-auto object-contain drop-shadow-lg"
                 />
-              </div>
-              <span className="text-[10px] text-sogan font-semibold">
+              <span className="text-[10px] text-dongker font-semibold">
                 Universitas Tulungagung
               </span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <div className="bg-white rounded-lg p-1.5 shadow-md border border-emas/40">
-                <img
+              <img
                   src="/logos/universitas-bhinneka-pgri.png"
                   alt="Logo Universitas Bhinneka PGRI"
-                  className="h-14 md:h-16 w-auto object-contain"
+                  className="h-14 md:h-16 w-auto object-contain drop-shadow-lg"
                 />
-              </div>
-              <span className="text-[10px] text-sogan font-semibold">
+              <span className="text-[10px] text-dongker font-semibold">
                 Universitas Bhinneka PGRI
               </span>
             </div>
@@ -83,7 +79,7 @@ export function SubmitSuccessView({
             <div className="mx-auto mb-4 rounded-full bg-emas/15 p-4 w-fit border border-emas/30">
               <CheckCircle2 className="h-12 w-12 text-emas" />
             </div>
-            <CardTitle className="text-2xl md:text-3xl text-sogan-dark font-display">
+            <CardTitle className="text-2xl md:text-3xl text-dongker-dark font-display">
               Matur Suwun, Ujian Berhasil Disubmit
             </CardTitle>
             <CardDescription className="text-muted-foreground italic font-display">
@@ -98,15 +94,15 @@ export function SubmitSuccessView({
             <div className="rounded-lg border border-emas/40 bg-krem-warm/60 p-4 space-y-3">
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <div className="text-muted-foreground">Nama Peserta</div>
-                <div className="font-semibold text-sogan-dark text-right">
+                <div className="font-semibold text-dongker-dark text-right">
                   {student.name}
                 </div>
                 <div className="text-muted-foreground">NIM</div>
-                <div className="font-mono font-semibold text-sogan-dark text-right">
+                <div className="font-mono font-semibold text-dongker-dark text-right">
                   {student.nim}
                 </div>
                 <div className="text-muted-foreground">Waktu Submit</div>
-                <div className="font-semibold text-sogan-dark text-right">
+                <div className="font-semibold text-dongker-dark text-right">
                   {submittedDate.toLocaleString("id-ID", {
                     dateStyle: "long",
                     timeStyle: "medium",
@@ -118,24 +114,24 @@ export function SubmitSuccessView({
             {/* Stats */}
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-lg border border-emas/40 bg-emas/5 p-4 batik-card">
-                <div className="flex items-center gap-2 text-sogan-dark mb-1">
+                <div className="flex items-center gap-2 text-dongker-dark mb-1">
                   <Award className="h-4 w-4 text-emas" />
                   <span className="text-xs font-semibold uppercase tracking-wider">
                     Total Soal
                   </span>
                 </div>
-                <p className="text-2xl font-bold text-sogan-dark font-display">
+                <p className="text-2xl font-bold text-dongker-dark font-display">
                   {summary.totalQuestions}
                 </p>
               </div>
-              <div className="rounded-lg border border-mendon/40 bg-mendon/5 p-4 batik-card">
-                <div className="flex items-center gap-2 text-mendon mb-1">
+              <div className="rounded-lg border border-dongker/30 bg-dongker/5 p-4 batik-card">
+                <div className="flex items-center gap-2 text-dongker mb-1">
                   <Clock className="h-4 w-4" />
                   <span className="text-xs font-semibold uppercase tracking-wider">
                     Total Durasi Audio
                   </span>
                 </div>
-                <p className="text-2xl font-bold text-mendon font-display">
+                <p className="text-2xl font-bold text-dongker font-display">
                   {fmtDuration(summary.totalDurationSeconds)}
                 </p>
               </div>
@@ -143,23 +139,23 @@ export function SubmitSuccessView({
 
             {/* Detail per soal */}
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-sogan-dark mb-2 font-display">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-dongker-dark mb-2 font-display">
                 ❋ Detail Jawaban per Section ❋
               </h3>
-              <div className="rounded-lg border border-sogan/30 divide-y divide-sogan/15 bg-krem-warm/40">
+              <div className="rounded-lg border border-dongker/30 divide-y divide-sogan/15 bg-krem-warm/40">
                 {summary.answers.map((a) => (
                   <div
                     key={a.questionId}
                     className="flex items-center justify-between p-3 text-sm"
                   >
-                    <span className="font-mono text-sogan-dark">
+                    <span className="font-mono text-dongker-dark">
                       {a.questionId}
                     </span>
                     <div className="flex items-center gap-4">
                       <span className="text-xs text-muted-foreground">
                         {a.attemptCount} percobaan
                       </span>
-                      <span className="font-mono font-semibold text-sogan-dark">
+                      <span className="font-mono font-semibold text-dongker-dark">
                         {fmtDuration(a.durationSeconds)}
                       </span>
                       <CheckCircle2 className="h-4 w-4 text-emas" />
@@ -171,8 +167,8 @@ export function SubmitSuccessView({
 
             {/* Notice */}
             <div className="rounded-lg border border-emas/40 bg-emas/5 p-4">
-              <p className="text-sm text-sogan-dark leading-relaxed">
-                <strong className="text-sogan-dark">Penting:</strong> Hasil dan
+              <p className="text-sm text-dongker-dark leading-relaxed">
+                <strong className="text-dongker-dark">Penting:</strong> Hasil dan
                 nilai akan diumumkan oleh dosen pengampu (Prof. Dr. Dwi Ima H,
                 M.Hum) setelah seluruh jawaban dinilai. Jika ada kendala teknis
                 selama ujian, segera laporkan via email dosen.
@@ -194,7 +190,7 @@ export function SubmitSuccessView({
 
             <BatikDivider />
 
-            <p className="text-center text-xs text-sogan-dark italic font-display">
+            <p className="text-center text-xs text-dongker-dark italic font-display">
               &ldquo;Matur nuwun sampun ngrampungaken ujian kanthi temen&rdquo;
             </p>
             <p className="text-center text-[10px] text-muted-foreground">

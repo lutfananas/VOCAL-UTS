@@ -38,14 +38,14 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  /* Cultural palette - Tulungagung/Javanese batik */
-  --color-sogan: var(--sogan);
-  --color-sogan-light: var(--sogan-light);
-  --color-sogan-dark: var(--sogan-dark);
-  --color-mendon: var(--mendon);
+  /* Cultural palette - Biru Dongker (Indigo) + Merah */
+  --color-dongker: var(--dongker);
+  --color-dongker-dark: var(--dongker-dark);
+  --color-dongker-light: var(--dongker-light);
+  --color-merah: var(--merah);
+  --color-merah-dark: var(--merah-dark);
+  --color-merah-light: var(--merah-light);
   --color-emas: var(--emas);
-  --color-emas-light: var(--emas-light);
-  --color-marun: var(--marun);
   --color-krem: var(--krem);
   --color-krem-warm: var(--krem-warm);
   --color-ink: var(--ink);
@@ -59,104 +59,102 @@
   --radius: 0.625rem;
 
   /* ============================================================
-     PALET WARNAA BUDAYA TULUNGAGUNG / BATIK JAWA
+     PALET WARNAA BATIK BIRU DONGKER + MERAH - CLEAN LOOK
      ============================================================
-     Sogan  : cokelat khas batik Jawa (warna utama)
-     Mendon : biru tua pekat (warna pengikut batik)
-     Emas   : kuning emas (aksen kemewahan)
-     Marun  : merah maroon (warna kerajaan)
-     Krem   : krem gading (background)
-     Ink    : hitam tinta (text utama)
+     Dongker : biru indigo pekat (warna utama, batik mendon)
+     Merah   : merah tegas (aksen, batik merah)
+     Emas    : kuning emas (aksen halus)
+     Krem    : krem gading (background, clean)
+     Ink     : hitam tinta (text utama)
      ============================================================ */
 
-  /* Sogan brown scale */
-  --sogan: #8b5a2b;
-  --sogan-light: #a87344;
-  --sogan-dark: #6b4423;
+  /* Biru dongker (indigo) scale */
+  --dongker: #1e3a8a;
+  --dongker-dark: #172554;
+  --dongker-light: #3b5fbf;
 
-  /* Mendon deep blue */
-  --mendon: #1b3b6f;
+  /* Merah (red) scale */
+  --merah: #c8102e;
+  --merah-dark: #8b0a1f;
+  --merah-light: #e63950;
 
-  /* Emas gold */
+  /* Emas gold (subtle accent) */
   --emas: #c9a227;
   --emas-light: #e0bc3a;
 
-  /* Marun maroon */
-  --marun: #9b1b30;
-
   /* Krem cream */
-  --krem: #faf3e0;
-  --krem-warm: #fff8e7;
+  --krem: #fefcf8;
+  --krem-warm: #fffbf2;
 
   /* Ink black */
-  --ink: #2a1810;
+  --ink: #1a1a2e;
 
   /* Base */
-  --background: #faf3e0;
-  --foreground: #2a1810;
-  --card: #fff8e7;
-  --card-foreground: #2a1810;
-  --popover: #fff8e7;
-  --popover-foreground: #2a1810;
-  --primary: #6b4423;
-  --primary-foreground: #faf3e0;
-  --secondary: #f0e4cc;
-  --secondary-foreground: #2a1810;
-  --muted: #f0e4cc;
-  --muted-foreground: #7a6650;
-  --accent: #c9a227;
-  --accent-foreground: #2a1810;
-  --destructive: #9b1b30;
-  --border: #d4b896;
-  --input: #d4b896;
-  --ring: #8b5a2b;
-  --chart-1: #8b5a2b;
-  --chart-2: #1b3b6f;
+  --background: #fefcf8;
+  --foreground: #1a1a2e;
+  --card: #ffffff;
+  --card-foreground: #1a1a2e;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a2e;
+  --primary: #1e3a8a;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f5f9;
+  --secondary-foreground: #1e3a8a;
+  --muted: #f4f5f9;
+  --muted-foreground: #5c6b8a;
+  --accent: #c8102e;
+  --accent-foreground: #ffffff;
+  --destructive: #c8102e;
+  --border: #e2e6f0;
+  --input: #e2e6f0;
+  --ring: #1e3a8a;
+  --chart-1: #1e3a8a;
+  --chart-2: #c8102e;
   --chart-3: #c9a227;
-  --chart-4: #9b1b30;
-  --chart-5: #6b4423;
-  --sidebar: #fff8e7;
-  --sidebar-foreground: #2a1810;
-  --sidebar-primary: #6b4423;
-  --sidebar-primary-foreground: #faf3e0;
-  --sidebar-accent: #f0e4cc;
-  --sidebar-accent-foreground: #2a1810;
-  --sidebar-border: #d4b896;
-  --sidebar-ring: #8b5a2b;
+  --chart-4: #3b5fbf;
+  --chart-5: #8b0a1f;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a2e;
+  --sidebar-primary: #1e3a8a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f5f9;
+  --sidebar-accent-foreground: #1e3a8a;
+  --sidebar-border: #e2e6f0;
+  --sidebar-ring: #1e3a8a;
 }
 
 .dark {
-  --background: #2a1810;
-  --foreground: #faf3e0;
-  --card: #3a2418;
-  --card-foreground: #faf3e0;
-  --popover: #3a2418;
-  --popover-foreground: #faf3e0;
-  --primary: #c9a227;
-  --primary-foreground: #2a1810;
-  --secondary: #4a2f20;
-  --secondary-foreground: #faf3e0;
-  --muted: #4a2f20;
-  --muted-foreground: #d4b896;
-  --accent: #8b5a2b;
-  --accent-foreground: #faf3e0;
-  --destructive: #b91c1c;
-  --border: #6b4423;
-  --input: #6b4423;
-  --ring: #c9a227;
-  --chart-1: #8b5a2b;
-  --chart-2: #1b3b6f;
-  --chart-3: #c9a227;
-  --chart-4: #9b1b30;
-  --chart-5: #d4b896;
-  --sidebar: #3a2418;
-  --sidebar-foreground: #faf3e0;
-  --sidebar-primary: #c9a227;
-  --sidebar-primary-foreground: #2a1810;
-  --sidebar-accent: #4a2f20;
-  --sidebar-accent-foreground: #faf3e0;
-  --sidebar-border: #6b4423;
-  --sidebar-ring: #c9a227;
+  --background: #0f1428;
+  --foreground: #fefcf8;
+  --card: #1a2138;
+  --card-foreground: #fefcf8;
+  --popover: #1a2138;
+  --popover-foreground: #fefcf8;
+  --primary: #3b5fbf;
+  --primary-foreground: #fefcf8;
+  --secondary: #243054;
+  --secondary-foreground: #fefcf8;
+  --muted: #243054;
+  --muted-foreground: #a8b3cc;
+  --accent: #e63950;
+  --accent-foreground: #fefcf8;
+  --destructive: #e63950;
+  --border: #2a3358;
+  --input: #2a3358;
+  --ring: #3b5fbf;
+  --chart-1: #3b5fbf;
+  --chart-2: #e63950;
+  --chart-3: #e0bc3a;
+  --chart-4: #5e7fd1;
+  --chart-5: #c8102e;
+  --sidebar: #1a2138;
+  --sidebar-foreground: #fefcf8;
+  --sidebar-primary: #3b5fbf;
+  --sidebar-primary-foreground: #fefcf8;
+  --sidebar-accent: #243054;
+  --sidebar-accent-foreground: #fefcf8;
+  --sidebar-border: #2a3358;
+  --sidebar-ring: #3b5fbf;
 }
 
 @layer base {
@@ -174,31 +172,31 @@
 }
 
 /* ============================================================
-   POLA BATIK TULUNGAGUNG / JAWA - SVG PATTERNS
+   POLA BATIK BIRU DONGKER + MERAH - CLEAN MODERN
    ============================================================ */
 
-/* Pattern 1: Kawung motif (bulat 4 segmen) - batik klasik Jawa */
+/* Pattern 1: Kawung motif halus - clean background */
 .batik-kawung {
-  background-color: #faf3e0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%238b5a2b' stroke-width='1.2' opacity='0.18'%3E%3Ccircle cx='20' cy='20' r='12'/%3E%3Cpath d='M20 8 Q14 14 20 20 Q26 14 20 8' fill='%238b5a2b' fill-opacity='0.4'/%3E%3Cpath d='M8 20 Q14 14 20 20 Q14 26 8 20' fill='%238b5a2b' fill-opacity='0.4'/%3E%3Cpath d='M20 32 Q14 26 20 20 Q26 26 20 32' fill='%238b5a2b' fill-opacity='0.4'/%3E%3Cpath d='M32 20 Q26 14 20 20 Q26 26 32 20' fill='%238b5a2b' fill-opacity='0.4'/%3E%3Ccircle cx='60' cy='60' r='12'/%3E%3Cpath d='M60 48 Q54 54 60 60 Q66 54 60 48' fill='%238b5a2b' fill-opacity='0.4'/%3E%3Cpath d='M48 60 Q54 54 60 60 Q54 66 48 60' fill='%238b5a2b' fill-opacity='0.4'/%3E%3Cpath d='M60 72 Q54 66 60 60 Q66 66 60 72' fill='%238b5a2b' fill-opacity='0.4'/%3E%3Cpath d='M72 60 Q66 54 60 60 Q66 66 72 60' fill='%238b5a2b' fill-opacity='0.4'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: #fefcf8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%231e3a8a' stroke-width='1' opacity='0.08'%3E%3Ccircle cx='20' cy='20' r='12'/%3E%3Cpath d='M20 8 Q14 14 20 20 Q26 14 20 8' fill='%231e3a8a' fill-opacity='0.4'/%3E%3Cpath d='M8 20 Q14 14 20 20 Q14 26 8 20' fill='%231e3a8a' fill-opacity='0.4'/%3E%3Cpath d='M20 32 Q14 26 20 20 Q26 26 20 32' fill='%231e3a8a' fill-opacity='0.4'/%3E%3Cpath d='M32 20 Q26 14 20 20 Q26 26 32 20' fill='%231e3a8a' fill-opacity='0.4'/%3E%3Ccircle cx='60' cy='60' r='12'/%3E%3Cpath d='M60 48 Q54 54 60 60 Q66 54 60 48' fill='%231e3a8a' fill-opacity='0.4'/%3E%3Cpath d='M48 60 Q54 54 60 60 Q54 66 48 60' fill='%231e3a8a' fill-opacity='0.4'/%3E%3Cpath d='M60 72 Q54 66 60 60 Q66 66 60 72' fill='%231e3a8a' fill-opacity='0.4'/%3E%3Cpath d='M72 60 Q66 54 60 60 Q66 66 72 60' fill='%231e3a8a' fill-opacity='0.4'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Pattern 2: Parang motif (diagonal) - motif klasik keraton */
+/* Pattern 2: Parang motif diagonal - clean */
 .batik-parang {
-  background-color: #faf3e0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%238b5a2b' fill-opacity='0.15'%3E%3Cpath d='M0 30 Q15 0 30 30 T60 30 L60 60 L0 60 Z'/%3E%3Cpath d='M0 30 Q15 0 30 30 T60 30' stroke='%236b4423' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3Cpath d='M0 45 Q15 15 30 45 T60 45' stroke='%23c9a227' stroke-width='0.8' fill='none' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: #fefcf8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%231e3a8a' fill-opacity='0.06'%3E%3Cpath d='M0 30 Q15 0 30 30 T60 30 L60 60 L0 60 Z'/%3E%3Cpath d='M0 30 Q15 0 30 30 T60 30' stroke='%231e3a8a' stroke-width='1.2' fill='none' opacity='0.5'/%3E%3Cpath d='M0 45 Q15 15 30 45 T60 45' stroke='%23c8102e' stroke-width='0.6' fill='none' opacity='0.4'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Pattern 3: Megamendung-style cloud motif (subtle background) */
+/* Pattern 3: Megamendung-style cloud - clean */
 .batik-mega {
-  background-color: #fff8e7;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%231b3b6f' stroke-width='1.2' opacity='0.15'%3E%3Cpath d='M10 50 Q20 30 35 40 T60 35 Q75 30 85 50 Q80 65 65 60 T40 65 Q20 70 10 50 Z'/%3E%3Cpath d='M5 75 Q15 55 30 65 T55 60 Q70 55 80 75 Q75 90 60 85 T35 90 Q15 95 5 75 Z'/%3E%3Cpath d='M15 25 Q25 5 40 15 T65 10 Q80 5 90 25 Q85 40 70 35 T45 40 Q25 45 15 25 Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: #fefcf8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%231e3a8a' stroke-width='1' opacity='0.08'%3E%3Cpath d='M10 50 Q20 30 35 40 T60 35 Q75 30 85 50 Q80 65 65 60 T40 65 Q20 70 10 50 Z'/%3E%3Cpath d='M5 75 Q15 55 30 65 T55 60 Q70 55 80 75 Q75 90 60 85 T35 90 Q15 95 5 75 Z'/%3E%3Cpath d='M15 25 Q25 5 40 15 T65 10 Q80 5 90 25 Q85 40 70 35 T45 40 Q25 45 15 25 Z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* Pattern 4: Geometric border (untuk footer/pembatas) */
 .batik-border {
   background-color: transparent;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'%3E%3Cg fill='%23c9a227' opacity='0.7'%3E%3Cpath d='M0 6 L8 0 L16 6 L8 12 Z'/%3E%3Cpath d='M16 6 L24 0 L32 6 L24 12 Z' fill='%238b5a2b'/%3E%3Cpath d='M32 6 L40 0 L48 6 L40 12 Z' fill='none' stroke='%236b4423' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'%3E%3Cg fill='%23c8102e' opacity='0.7'%3E%3Cpath d='M0 6 L8 0 L16 6 L8 12 Z'/%3E%3Cpath d='M16 6 L24 0 L32 6 L24 12 Z' fill='%231e3a8a'/%3E%3Cpath d='M32 6 L40 0 L48 6 L40 12 Z' fill='none' stroke='%231e3a8a' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-position: center;
 }
@@ -206,17 +204,18 @@
 /* Decorative top divider with batik motif */
 .batik-divider {
   height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='16' viewBox='0 0 60 16'%3E%3Cg fill='%23c9a227'%3E%3Cpath d='M30 0 L34 4 L38 0 L42 4 L38 8 L42 12 L38 16 L34 12 L30 16 L26 12 L22 16 L18 12 L22 8 L18 4 L22 0 L26 4 Z'/%3E%3Ccircle cx='10' cy='8' r='3' fill='%238b5a2b'/%3E%3Ccircle cx='50' cy='8' r='3' fill='%238b5a2b'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='16' viewBox='0 0 60 16'%3E%3Cg fill='%23c8102e'%3E%3Cpath d='M30 0 L34 4 L38 0 L42 4 L38 8 L42 12 L38 16 L34 12 L30 16 L26 12 L22 16 L18 12 L22 8 L18 4 L22 0 L26 4 Z'/%3E%3Ccircle cx='10' cy='8' r='3' fill='%231e3a8a'/%3E%3Ccircle cx='50' cy='8' r='3' fill='%231e3a8a'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-position: center;
   background-size: 60px 16px;
 }
 
-/* Card with batik accent border */
+/* Card with batik accent border - clean white card with subtle accent */
 .batik-card {
   position: relative;
   background: var(--card);
   border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(30, 58, 138, 0.06);
 }
 
 .batik-card::before {
@@ -225,35 +224,34 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(
     90deg,
-    var(--sogan) 0%,
-    var(--emas) 25%,
-    var(--marun) 50%,
-    var(--emas) 75%,
-    var(--sogan) 100%
+    var(--dongker) 0%,
+    var(--merah) 50%,
+    var(--dongker) 100%
   );
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* Hero batik header - sogan background with emas pattern */
+/* Hero batik header - dongker gradient with subtle pattern */
 .batik-hero {
-  background: linear-gradient(135deg, #6b4423 0%, #8b5a2b 50%, #6b4423 100%);
+  background: linear-gradient(135deg, #172554 0%, #1e3a8a 50%, #172554 100%);
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c9a227' stroke-width='1' opacity='0.3'%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3Ccircle cx='40' cy='40' r='15'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3Cpath d='M40 20 L40 60 M20 40 L60 40'/%3E%3Cpath d='M25 25 L55 55 M55 25 L25 55'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(135deg, #6b4423 0%, #8b5a2b 50%, #6b4423 100%);
-  color: #faf3e0;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c9a227' stroke-width='1' opacity='0.2'%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3Ccircle cx='40' cy='40' r='15'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3Cpath d='M40 20 L40 60 M20 40 L60 40'/%3E%3Cpath d='M25 25 L55 55 M55 25 L25 55'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(135deg, #172554 0%, #1e3a8a 50%, #172554 100%);
+  color: #fefcf8;
 }
 
-/* Batik button - emas accent */
+/* Batik button - clean dongker with merah accent */
 .btn-batik {
-  background: linear-gradient(135deg, #6b4423 0%, #8b5a2b 100%);
-  color: #faf3e0;
-  border: 1px solid #c9a227;
-  box-shadow: 0 2px 4px rgba(107, 68, 35, 0.25);
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+  color: #ffffff;
+  border: 1px solid #c8102e;
+  box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .btn-batik::before {
@@ -263,7 +261,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(201, 162, 39, 0.25) 50%,
+    rgba(200, 16, 46, 0.3) 50%,
     transparent 100%
   );
   transform: translateX(-100%);
@@ -275,8 +273,8 @@
 }
 
 .btn-batik:hover {
-  background: linear-gradient(135deg, #8b5a2b 0%, #a87344 100%);
-  box-shadow: 0 4px 8px rgba(107, 68, 35, 0.35);
+  background: linear-gradient(135deg, #3b5fbf 0%, #1e3a8a 100%);
+  box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
 }
 
 /* Batik corner ornament */
@@ -303,15 +301,15 @@
   right: 6px;
 }
 
-/* Section badge with batik styling */
+/* Section badge with batik styling - clean */
 .badge-batik {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.75rem;
-  background: linear-gradient(135deg, #6b4423 0%, #8b5a2b 100%);
-  color: #faf3e0;
-  border: 1px solid #c9a227;
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+  color: #ffffff;
+  border: 1px solid #c8102e;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -325,20 +323,20 @@
 }
 
 .batik-scroll::-webkit-scrollbar-track {
-  background: #f0e4cc;
+  background: #f4f5f9;
 }
 
 .batik-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8b5a2b 0%, #6b4423 100%);
+  background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%);
   border-radius: 5px;
-  border: 2px solid #f0e4cc;
+  border: 2px solid #f4f5f9;
 }
 
 .batik-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #a87344 0%, #8b5a2b 100%);
+  background: linear-gradient(180deg, #3b5fbf 0%, #1e3a8a 100%);
 }
 
-/* Animated pulse for recording - batik red */
+/* Animated pulse for recording - merah */
 @keyframes batik-pulse {
   0%, 100% {
     transform: scale(1);
@@ -354,9 +352,261 @@
   animation: batik-pulse 1.2s ease-in-out infinite;
 }
 
-/* Traditional Javanese paper texture for cards */
+/* Traditional Javanese paper texture for cards - very subtle */
 .paper-texture {
-  background-color: #fff8e7;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg fill='%23d4b896' fill-opacity='0.08'%3E%3Ccircle cx='50' cy='50' r='1'/%3E%3Ccircle cx='150' cy='50' r='1'/%3E%3Ccircle cx='50' cy='150' r='1'/%3E%3Ccircle cx='150' cy='150' r='1'/%3E%3Ccircle cx='100' cy='100' r='1.5'/%3E%3Ccircle cx='100' cy='20' r='0.8'/%3E%3Ccircle cx='100' cy='180' r='0.8'/%3E%3Ccircle cx='20' cy='100' r='0.8'/%3E%3Ccircle cx='180' cy='100' r='0.8'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: #ffffff;
+}
+
+/* ============================================================
+   ANIMASI BATIK BERJALAN (SCROLLING BATIK PATTERN)
+   ============================================================ */
+
+/* Horizontal scrolling batik parang */
+@keyframes batik-scroll-horizontal {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 80px 0;
+  }
+}
+
+.batik-scroll-anim {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='%23c9a227' opacity='0.4'%3E%3Cpath d='M0 20 Q10 0 20 20 T40 20 L40 40 L0 40 Z' fill='%231e3a8a' fill-opacity='0.3'/%3E%3Cpath d='M0 20 Q10 0 20 20 T40 20' stroke='%23c8102e' stroke-width='1' fill='none' opacity='0.5'/%3E%3Ccircle cx='10' cy='20' r='2' fill='%23c8102e' opacity='0.6'/%3E%3Ccircle cx='30' cy='20' r='2' fill='%23c8102e' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  background-repeat: repeat;
+  animation: batik-scroll-horizontal 8s linear infinite;
+}
+
+/* Animated diagonal parang stripes */
+@keyframes parang-move {
+  from { background-position: 0 0; }
+  to { background-position: 60px 60px; }
+}
+
+.batik-parang-anim {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%231e3a8a' fill-opacity='0.12'%3E%3Cpath d='M0 30 Q15 0 30 30 T60 30 L60 60 L0 60 Z'/%3E%3Cpath d='M0 30 Q15 0 30 30 T60 30' stroke='%23c8102e' stroke-width='1.5' fill='none' opacity='0.4'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  animation: parang-move 12s linear infinite;
+}
+
+/* ============================================================
+   ANIMASI WAYANG GUNUNGAN TERBELAH
+   ============================================================ */
+
+/* Gunungan shape - mountain/leaf shape from wayang kulit */
+.gunungan-shape {
+  position: relative;
+  width: 280px;
+  height: 360px;
+}
+
+/* Left half of gunungan */
+.gunungan-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+  clip-path: polygon(
+    50% 0%,
+    100% 0%,
+    100% 100%,
+    50% 100%,
+    30% 90%,
+    15% 75%,
+    5% 55%,
+    0% 35%,
+    5% 15%,
+    20% 5%,
+    35% 0%
+  );
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+/* Right half of gunungan */
+.gunungan-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #172554 0%, #1e3a8a 100%);
+  clip-path: polygon(
+    50% 0%,
+    0% 0%,
+    0% 100%,
+    50% 100%,
+    70% 90%,
+    85% 75%,
+    95% 55%,
+    100% 35%,
+    95% 15%,
+    80% 5%,
+    65% 0%
+  );
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+/* When opened, halves slide apart */
+.gunungan-open .gunungan-left {
+  transform: translateX(-110%) rotate(-15deg);
+}
+
+.gunungan-open .gunungan-right {
+  transform: translateX(110%) rotate(15deg);
+}
+
+/* Decorative pattern on gunungan halves */
+.gunungan-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23c9a227' stroke-width='1' opacity='0.5'%3E%3Cpath d='M20 5 L25 15 L20 25 L15 15 Z'/%3E%3Ccircle cx='20' cy='35' r='3'/%3E%3Cpath d='M5 20 L15 25 L5 35' /%3E%3Cpath d='M35 20 L25 25 L35 35' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  opacity: 0.6;
+}
+
+/* Reveal animation for content inside gunungan */
+@keyframes reveal-fade {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  60% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gunungan-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.8s ease 0.8s;
+}
+
+.gunungan-open .gunungan-content {
+  opacity: 1;
+}
+
+/* Floating animation for revealed content */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-8px);
+  }
+}
+
+.gunungan-open .gunungan-content {
+  animation: float-gentle 4s ease-in-out infinite 1.5s;
+}
+
+/* Glow effect when gunungan opens */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(201, 162, 39, 0.4), 0 0 60px rgba(201, 162, 39, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(201, 162, 39, 0.6), 0 0 100px rgba(201, 162, 39, 0.3);
+  }
+}
+
+.gunungan-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Slow rotation for decorative ring */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+@keyframes spin-reverse-slow {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse-slow 25s linear infinite;
+}
+
+/* Entrance animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.1s; opacity: 0; }
+.delay-200 { animation-delay: 0.2s; opacity: 0; }
+.delay-300 { animation-delay: 0.3s; opacity: 0; }
+.delay-500 { animation-delay: 0.5s; opacity: 0; }
+.delay-700 { animation-delay: 0.7s; opacity: 0; }
+.delay-1000 { animation-delay: 1s; opacity: 0; }
+.delay-1500 { animation-delay: 1.5s; opacity: 0; }
+.delay-2000 { animation-delay: 2s; opacity: 0; }
+.delay-2500 { animation-delay: 2.5s; opacity: 0; }
+
+/* Shimmer effect for VOCAL title */
+@keyframes shimmer-gold {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(201, 162, 39, 0.4), 0 0 40px rgba(201, 162, 39, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(201, 162, 39, 0.7), 0 0 60px rgba(201, 162, 39, 0.4), 0 0 80px rgba(200, 16, 46, 0.2);
+  }
+}
+
+.shimmer-gold {
+  animation: shimmer-gold 3s ease-in-out infinite;
 }
