@@ -201,9 +201,9 @@ export default function Home() {
   // Loading screen
   if (view === "loading") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-3 batik-mega">
-        <Loader2 className="h-8 w-8 animate-spin text-emas" />
-        <p className="text-sm text-sogan-dark font-display italic">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-white">
+        <Loader2 className="h-8 w-8 animate-spin text-dongker" />
+        <p className="text-sm text-slate-600 font-display italic">
           Memuat sistem ujian...
         </p>
       </div>

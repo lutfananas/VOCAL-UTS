@@ -302,9 +302,9 @@ export function ExamView({
   }
 
   return (
-    <div className="min-h-screen batik-mega">
+    <div className="min-h-screen bg-white">
       {/* Top Bar */}
-      <header className="sticky top-0 z-30 border-b border-emas/30 bg-krem-warm/95 backdrop-blur shadow-sm">
+      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur shadow-sm">
         <div className="container mx-auto max-w-6xl px-3 md:px-4 py-3">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
@@ -321,7 +321,7 @@ export function ExamView({
                   className="h-8 w-auto object-contain"
                 />
               </div>
-              <div className="rounded-lg btn-batik border-emas p-2 shadow-sm shrink-0">
+              <div className="rounded-lg btn-batik border-dongker/30 p-2 shadow-sm shrink-0">
                 <Mic className="h-4 w-4 text-white" />
               </div>
               <div className="min-w-0 hidden sm:block">
@@ -336,7 +336,7 @@ export function ExamView({
             <div className="flex items-center gap-2">
               <Badge
                 variant="outline"
-                className="bg-emas/10 border-emas/50 text-dongker-dark"
+                className="bg-dongker/5 border-slate-200 text-dongker-dark"
               >
                 {answeredCount}/{questions.length} terjawab
               </Badge>
@@ -344,7 +344,7 @@ export function ExamView({
                 size="sm"
                 onClick={() => setShowSubmitDialog(true)}
                 disabled={answeredCount < questions.length}
-                className="btn-batik border-emas hover:opacity-90 text-white"
+                className="btn-batik border-dongker/30 hover:opacity-90 text-white"
               >
                 <Send className="h-4 w-4 mr-1" />
                 Submit
@@ -374,19 +374,19 @@ export function ExamView({
                     onClick={() => goToQuestion(idx)}
                     className={`w-full text-left rounded-lg border p-2.5 transition-all ${
                       isActive
-                        ? "border-emas bg-emas/10 ring-1 ring-emas/30"
+                        ? "border-dongker bg-dongker/5 ring-1 ring-dongker/20"
                         : isAnswered
-                        ? "border-emas/40 bg-krem-warm hover:bg-emas/10/30"
-                        : "border-dongker/25 bg-krem-warm hover:bg-krem-warm/60"
+                        ? "border-dongker/30 bg-dongker/5 hover:bg-dongker/10"
+                        : "border-slate-200 bg-white hover:bg-slate-50"
                     }`}
                   >
                     <div className="flex items-center gap-2">
                       <div
                         className={`shrink-0 w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold ${
                           isActive
-                            ? "btn-batik border-emas text-white"
+                            ? "btn-batik border-dongker/30 text-white"
                             : isAnswered
-                            ? "bg-emas/15 text-dongker-dark"
+                            ? "bg-dongker/10 text-dongker-dark"
                             : "batik-mega text-muted-foreground"
                         }`}
                       >
@@ -401,7 +401,7 @@ export function ExamView({
                         </p>
                       </div>
                       {isAnswered && (
-                        <CheckCircle2 className="h-4 w-4 text-emas shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-merah shrink-0" />
                       )}
                     </div>
                   </button>
@@ -438,7 +438,7 @@ export function ExamView({
                   <div className="flex items-center gap-2 flex-wrap">
                     <Badge
                       variant="outline"
-                      className="bg-emas/10 border-emas/50 text-dongker-dark"
+                      className="bg-dongker/5 border-slate-200 text-dongker-dark"
                     >
                       Section {question.sectionNumber} dari {questions.length}
                     </Badge>
@@ -450,14 +450,14 @@ export function ExamView({
                     </Badge>
                     <Badge
                       variant="outline"
-                      className="bg-emas/10 border-emas/50 text-dongker-dark"
+                      className="bg-dongker/5 border-slate-200 text-dongker-dark"
                     >
                       {question.points} Poin
                     </Badge>
                     {question.answered && (
                       <Badge
                         variant="outline"
-                        className="bg-emas/10 border-emas/50 text-dongker-dark"
+                        className="bg-dongker/5 border-slate-200 text-dongker-dark"
                       >
                         <CheckCircle2 className="h-3 w-3 mr-1" />
                         Sudah dijawab
@@ -482,7 +482,7 @@ export function ExamView({
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
                   Skenario
                 </h3>
-                <p className="text-sm text-dongker leading-relaxed bg-krem-warm/60/60 rounded-lg p-3 border border-slate-100">
+                <p className="text-sm text-dongker leading-relaxed bg-slate-50 rounded-lg p-3 border border-slate-100">
                   {question.scenario}
                 </p>
               </div>
@@ -503,7 +503,7 @@ export function ExamView({
                     <Volume2 className="h-3 w-3" />
                     Teks untuk Dibaca
                   </h3>
-                  <div className="rounded-lg border border-emas/40 bg-emas/10/40 p-4">
+                  <div className="rounded-lg border border-slate-200 bg-dongker/5 p-4">
                     <ScrollArea className="max-h-60">
                       <p className="text-sm text-dongker-dark leading-relaxed font-serif italic">
                         &ldquo;{question.readingText}&rdquo;
@@ -539,9 +539,9 @@ export function ExamView({
                       {question.informalSentences.map((s, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2 text-sm bg-emas/10/40 border border-emas/40 rounded-lg p-3"
+                          className="flex items-start gap-2 text-sm bg-dongker/5 border border-slate-200 rounded-lg p-3"
                         >
-                          <span className="shrink-0 w-5 h-5 rounded-full bg-emas/30 text-dongker-dark text-[10px] font-bold flex items-center justify-center">
+                          <span className="shrink-0 w-5 h-5 rounded-full bg-merah/30 text-dongker-dark text-[10px] font-bold flex items-center justify-center">
                             {i + 1}
                           </span>
                           <span className="text-dongker-dark italic">
@@ -583,9 +583,9 @@ export function ExamView({
                   {question.evaluationCriteria.map((c, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2 text-xs text-dongker-dark/75 bg-krem-warm/60/60 rounded px-2 py-1.5 border border-slate-100"
+                      className="flex items-start gap-2 text-xs text-dongker-dark/75 bg-slate-50 rounded px-2 py-1.5 border border-slate-100"
                     >
-                      <CheckCircle2 className="h-3 w-3 text-emas mt-0.5 shrink-0" />
+                      <CheckCircle2 className="h-3 w-3 text-merah mt-0.5 shrink-0" />
                       <span>{c}</span>
                     </li>
                   ))}
@@ -606,7 +606,7 @@ export function ExamView({
                   {showTips ? "Sembunyikan Tips" : "Tampilkan Tips Pengerjaan"}
                 </button>
                 {showTips && (
-                  <ul className="mt-2 space-y-1.5 rounded-lg border border-emas/40 bg-emas/10/60 p-3">
+                  <ul className="mt-2 space-y-1.5 rounded-lg border border-slate-200 bg-dongker/5 p-3">
                     {question.tips.map((t, i) => (
                       <li
                         key={i}
@@ -623,10 +623,10 @@ export function ExamView({
           </Card>
 
           {/* Recorder Card */}
-          <Card className="border-emas/40">
+          <Card className="border-slate-200">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center gap-2 text-base text-dongker-dark font-display">
-                <Mic className="h-4 w-4 text-emas" />
+                <Mic className="h-4 w-4 text-merah" />
                 Perekam Jawaban Speaking
               </CardTitle>
               <CardDescription>
@@ -636,7 +636,7 @@ export function ExamView({
             <CardContent className="space-y-4">
               {/* Preparation Phase */}
               {effectivePhase === "preparing" && (
-                <div className="rounded-lg border border-dongker/30 bg-dongker/5/60 p-5 text-center space-y-3">
+                <div className="rounded-lg border border-dongker/30 bg-dongker/5 p-5 text-center space-y-3">
                   <div className="flex items-center justify-center gap-2 text-dongker">
                     <Clock className="h-5 w-5" />
                     <span className="font-semibold">
@@ -661,7 +661,7 @@ export function ExamView({
 
               {/* Ready to Record */}
               {effectivePhase === "ready-to-record" && (
-                <div className="rounded-lg border border-dongker/25 bg-krem-warm/60/60 p-6 text-center space-y-4">
+                <div className="rounded-lg border border-dongker/25 bg-slate-50 p-6 text-center space-y-4">
                   <div className="flex items-center justify-center gap-2 text-dongker">
                     <Mic className="h-5 w-5" />
                     <span className="font-semibold">Siap Merekam</span>
@@ -752,12 +752,12 @@ export function ExamView({
 
               {/* Recorded - Playback & Submit */}
               {effectivePhase === "recorded" && (
-                <div className="rounded-lg border border-emas/50 bg-emas/10/40 p-5 space-y-4">
+                <div className="rounded-lg border border-slate-200 bg-dongker/5 p-5 space-y-4">
                   <div className="flex items-center gap-2 text-dongker-dark">
                     <CheckCircle2 className="h-5 w-5" />
                     <span className="font-semibold">Rekaman Selesai</span>
                   </div>
-                  <div className="bg-krem-warm rounded-lg border border-emas/40 p-4">
+                  <div className="bg-white rounded-lg border border-slate-200 p-4">
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs text-muted-foreground">
                         Durasi rekaman
@@ -781,8 +781,8 @@ export function ExamView({
                     </Alert>
                   )}
                   {savedJustNow === question.id ? (
-                    <Alert className="border-emas/50 bg-emas/10">
-                      <CheckCircle2 className="h-4 w-4 text-emas" />
+                    <Alert className="border-slate-200 bg-dongker/5">
+                      <CheckCircle2 className="h-4 w-4 text-merah" />
                       <AlertDescription className="text-dongker-dark">
                         Jawaban tersimpan! Pindah ke soal berikutnya...
                       </AlertDescription>
@@ -800,7 +800,7 @@ export function ExamView({
                       <Button
                         onClick={handleSubmitAnswer}
                         disabled={effectivePhase === "submitting"}
-                        className="flex-1 btn-batik border-emas hover:opacity-90 text-white"
+                        className="flex-1 btn-batik border-dongker/30 hover:opacity-90 text-white"
                       >
                         {effectivePhase === "submitting" ? (
                           <>
@@ -822,7 +822,7 @@ export function ExamView({
               {/* Submitting */}
               {effectivePhase === "submitting" && (
                 <div className="text-center py-8">
-                  <Loader2 className="h-8 w-8 animate-spin text-emas mx-auto" />
+                  <Loader2 className="h-8 w-8 animate-spin text-merah mx-auto" />
                   <p className="text-sm text-dongker-dark/75 mt-2">
                     Menyimpan jawaban...
                   </p>
@@ -869,7 +869,7 @@ export function ExamView({
               <Button
                 onClick={() => setShowSubmitDialog(true)}
                 disabled={answeredCount < questions.length}
-                className="btn-batik border-emas hover:opacity-90 text-white"
+                className="btn-batik border-dongker/30 hover:opacity-90 text-white"
               >
                 <Send className="h-4 w-4 mr-1" />
                 Submit Ujian
@@ -884,7 +884,7 @@ export function ExamView({
         <DialogContent className="max-w-lg">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-dongker-dark">
-              <Send className="h-5 w-5 text-emas" />
+              <Send className="h-5 w-5 text-merah" />
               Konfirmasi Submit Ujian
             </DialogTitle>
             <DialogDescription>
@@ -893,7 +893,7 @@ export function ExamView({
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-3">
-            <div className="rounded-lg border border-dongker/25 bg-krem-warm/60/60 p-3">
+            <div className="rounded-lg border border-dongker/25 bg-slate-50 p-3">
               <p className="text-sm text-dongker mb-2">
                 Status jawaban Anda:
               </p>
@@ -905,7 +905,7 @@ export function ExamView({
                       key={q.id}
                       className={`flex items-center gap-2 text-xs rounded px-2 py-1.5 ${
                         isAnswered
-                          ? "bg-emas/10 text-dongker-dark"
+                          ? "bg-dongker/5 text-dongker-dark"
                           : "bg-merah/5 text-merah"
                       }`}
                     >
@@ -926,8 +926,8 @@ export function ExamView({
                 Terjawab: {answeredCount} / {questions.length}
               </p>
             </div>
-            <Alert className="border-emas/40 bg-emas/10/60">
-              <AlertCircle className="h-4 w-4 text-emas" />
+            <Alert className="border-slate-200 bg-dongker/5">
+              <AlertCircle className="h-4 w-4 text-merah" />
               <AlertDescription className="text-dongker-dark text-sm">
                 Setelah submit, Anda tidak dapat login ulang, mengubah jawaban,
                 atau mengulang ujian. Pastikan koneksi internet stabil saat
@@ -946,7 +946,7 @@ export function ExamView({
             <Button
               onClick={onSubmitExam}
               disabled={answeredCount < questions.length}
-              className="btn-batik border-emas hover:opacity-90 text-white"
+              className="btn-batik border-dongker/30 hover:opacity-90 text-white"
             >
               <Send className="h-4 w-4 mr-1" />
               Ya, Submit Sekarang

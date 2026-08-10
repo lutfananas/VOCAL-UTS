@@ -101,48 +101,56 @@ def draw_corner_ornament(draw, x, y, size=40, color=EMAS):
 
 def create_vocal_banner():
     """Create VOCAL opening banner PNG - BIRU DONGKER + MERAH theme"""
-    # Canvas with dongker gradient
-    img = Image.new("RGBA", (W, H), DONGKER_DARK + (255,))
+    # Canvas with WHITE background (clean, dominant white)
+    img = Image.new("RGBA", (W, H), (255, 255, 255, 255))
     draw = ImageDraw.Draw(img, "RGBA")
 
-    # Vertical gradient (dongker dark -> dongker -> dongker dark)
-    for y in range(H):
-        t = y / H
-        if t < 0.5:
-            mix = t * 2
+    # Top batik accent strip (dongker + merah gradient)
+    for x in range(W):
+        t = x / W
+        if t < 0.33:
+            mix = t * 3  # 0 -> 1
+            r = int(DONGKER[0] + (MERAH[0] - DONGKER[0]) * mix)
+            g = int(DONGKER[1] + (MERAH[1] - DONGKER[1]) * mix)
+            b = int(DONGKER[2] + (MERAH[2] - DONGKER[2]) * mix)
+        elif t < 0.66:
+            mix = (t - 0.33) * 3  # 0 -> 1
+            r = int(MERAH[0] + (DONGKER[0] - MERAH[0]) * mix)
+            g = int(MERAH[1] + (DONGKER[1] - MERAH[1]) * mix)
+            b = int(MERAH[2] + (DONGKER[2] - MERAH[2]) * mix)
         else:
-            mix = (1 - t) * 2
-        r = int(DONGKER_DARK[0] + (DONGKER[0] - DONGKER_DARK[0]) * mix)
-        g = int(DONGKER_DARK[1] + (DONGKER[1] - DONGKER_DARK[1]) * mix)
-        b = int(DONGKER_DARK[2] + (DONGKER[2] - DONGKER_DARK[2]) * mix)
-        draw.line([(0, y), (W, y)], fill=(r, g, b, 255))
+            r, g, b = DONGKER
+        draw.line([(x, 0), (x, 12)], fill=(r, g, b, 255))
 
-    # Overlay batik parang pattern
+    # Bottom batik accent strip
+    for x in range(W):
+        t = x / W
+        if t < 0.33:
+            mix = t * 3
+            r = int(DONGKER[0] + (MERAH[0] - DONGKER[0]) * mix)
+            g = int(DONGKER[1] + (MERAH[1] - DONGKER[1]) * mix)
+            b = int(DONGKER[2] + (MERAH[2] - DONGKER[2]) * mix)
+        elif t < 0.66:
+            mix = (t - 0.33) * 3
+            r = int(MERAH[0] + (DONGKER[0] - MERAH[0]) * mix)
+            g = int(MERAH[1] + (DONGKER[1] - MERAH[1]) * mix)
+            b = int(MERAH[2] + (DONGKER[2] - MERAH[2]) * mix)
+        else:
+            r, g, b = DONGKER
+        draw.line([(x, H - 12), (x, H)], fill=(r, g, b, 255))
+
+    # Very subtle batik parang pattern overlay (almost invisible)
     batik_overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     batik_draw = ImageDraw.Draw(batik_overlay, "RGBA")
-    draw_batik_parang(batik_draw, W, H, opacity=25)
+    draw_batik_parang(batik_draw, W, H, opacity=8)
     img = Image.alpha_composite(img, batik_overlay)
     draw = ImageDraw.Draw(img, "RGBA")
 
-    # Radial glow emas
-    glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    glow_draw = ImageDraw.Draw(glow, "RGBA")
-    cx, cy = W // 2, H // 2
-    for r in range(600, 0, -20):
-        alpha = int(45 * (1 - r / 600))
-        glow_draw.ellipse(
-            [cx - r, cy - r, cx + r, cy + r],
-            fill=(*EMAS, alpha)
-        )
-    glow = glow.filter(ImageFilter.GaussianBlur(radius=40))
-    img = Image.alpha_composite(img, glow)
-    draw = ImageDraw.Draw(img, "RGBA")
-
-    # Corner ornaments
-    draw_corner_ornament(draw, 70, 70, size=50, color=EMAS)
-    draw_corner_ornament(draw, W - 70, 70, size=50, color=EMAS)
-    draw_corner_ornament(draw, 70, H - 70, size=50, color=EMAS)
-    draw_corner_ornament(draw, W - 70, H - 70, size=50, color=EMAS)
+    # Corner ornaments - use dongker/merah instead of emas (for white bg)
+    draw_corner_ornament(draw, 70, 70, size=50, color=DONGKER)
+    draw_corner_ornament(draw, W - 70, 70, size=50, color=MERAH)
+    draw_corner_ornament(draw, 70, H - 70, size=50, color=MERAH)
+    draw_corner_ornament(draw, W - 70, H - 70, size=50, color=DONGKER)
 
     # === TOP: 2 LOGOS (transparent PNGs) ===
     logo_y = 110
@@ -176,7 +184,7 @@ def create_vocal_banner():
     draw = ImageDraw.Draw(img, "RGBA")
 
     # === DIVIDER ===
-    draw_batik_divider(draw, 290, W, color=EMAS)
+    draw_batik_divider(draw, 290, W, color=MERAH)
 
     # === SUGENG RAWUH ===
     font_sugeng = load_font(36, italic=True, display=True)
@@ -185,27 +193,27 @@ def create_vocal_banner():
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 320),
         sugeng_text,
-        fill=EMAS_LIGHT,
+        fill=DONGKER,
         font=font_sugeng
     )
 
-    # === VOCAL TITLE (huge, with merah glow) ===
+    # === VOCAL TITLE (huge, dongker on white) ===
     font_vocal = load_font(180, bold=True, display=True)
     vocal_text = "VOCAL"
     bbox = draw.textbbox((0, 0), vocal_text, font=font_vocal)
     vocal_w = bbox[2] - bbox[0]
-    # Drop shadow with merah tint
+    # Subtle merah drop shadow
     draw.text(
-        ((W - vocal_w) // 2 + 4, 380 + 4),
+        ((W - vocal_w) // 2 + 3, 380 + 3),
         vocal_text,
-        fill=MERAH + (200,),
+        fill=MERAH + (60,),
         font=font_vocal
     )
-    # Main emas text
+    # Main dongker text
     draw.text(
         ((W - vocal_w) // 2, 380),
         vocal_text,
-        fill=EMAS,
+        fill=DONGKER,
         font=font_vocal
     )
 
@@ -216,43 +224,43 @@ def create_vocal_banner():
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 580),
         subtitle,
-        fill=KREM + (230,),
+        fill=(100, 116, 139, 230),  # slate-500
         font=font_subtitle
     )
 
     # === DIVIDER ===
-    draw_batik_divider(draw, 660, W, color=EMAS)
+    draw_batik_divider(draw, 660, W, color=MERAH)
 
     # === Tagline ===
     font_tag = load_font(34, display=True)
     tag1 = "Inovasi Pembelajaran Digital Speaking"
     bbox = draw.textbbox((0, 0), tag1, font=font_tag)
-    draw.text(((W - (bbox[2] - bbox[0])) // 2, 700), tag1, fill=KREM, font=font_tag)
+    draw.text(((W - (bbox[2] - bbox[0])) // 2, 700), tag1, fill=(30, 41, 59), font=font_tag)  # slate-800
 
     font_tag2 = load_font(28, italic=True, display=True)
     tag2 = "Berbasis Kearifan Lokal untuk Mewujudkan"
     bbox = draw.textbbox((0, 0), tag2, font=font_tag2)
-    draw.text(((W - (bbox[2] - bbox[0])) // 2, 760), tag2, fill=KREM + (220,), font=font_tag2)
+    draw.text(((W - (bbox[2] - bbox[0])) // 2, 760), tag2, fill=(100, 116, 139, 220), font=font_tag2)
 
     font_tag3 = load_font(46, bold=True, display=True)
     tag3 = "Kampus Berdampak"
     bbox = draw.textbbox((0, 0), tag3, font=font_tag3)
-    # Merah accent for "Kampus Berdampak"
+    # Merah for "Kampus Berdampak"
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2 + 2, 812 + 2),
         tag3,
-        fill=MERAH + (180,),
+        fill=DONGKER + (60,),
         font=font_tag3
     )
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 812),
         tag3,
-        fill=EMAS_LIGHT,
+        fill=MERAH,
         font=font_tag3
     )
 
     # === DIVIDER ===
-    draw_batik_divider(draw, 910, W, color=EMAS)
+    draw_batik_divider(draw, 910, W, color=MERAH)
 
     # === PROFESSOR PHOTO (circular, larger, transparent PNG) ===
     photo_cx, photo_cy = W // 2, 1080
@@ -283,7 +291,7 @@ def create_vocal_banner():
         shadow = shadow.filter(ImageFilter.GaussianBlur(radius=8))
         img.paste(shadow, (photo_cx - photo_r - 10 + 4, photo_cy - photo_r - 10 + 6), shadow)
 
-        # Decorative rings
+        # Decorative rings - dongker + merah on white
         ring_draw = ImageDraw.Draw(img, "RGBA")
         ring_draw.ellipse(
             [photo_cx - photo_r - 22, photo_cy - photo_r - 22,
@@ -294,13 +302,13 @@ def create_vocal_banner():
         ring_draw.ellipse(
             [photo_cx - photo_r - 15, photo_cy - photo_r - 15,
              photo_cx + photo_r + 15, photo_cy + photo_r + 15],
-            outline=EMAS + (220,),
+            outline=DONGKER + (220,),
             width=2
         )
         ring_draw.ellipse(
             [photo_cx - photo_r - 8, photo_cy - photo_r - 8,
              photo_cx + photo_r + 8, photo_cy + photo_r + 8],
-            outline=EMAS,
+            outline=DONGKER,
             width=4
         )
 
@@ -309,11 +317,12 @@ def create_vocal_banner():
         circular.paste(prof, (0, 0), mask)
         img.paste(circular, (photo_cx - photo_r, photo_cy - photo_r), circular)
 
-        # Corner stars on photo
-        for dx, dy in [(-1, -1), (1, -1), (-1, 1), (1, 1)]:
+        # Corner stars on photo - alternate dongker/merah
+        for i, (dx, dy) in enumerate([(-1, -1), (1, -1), (-1, 1), (1, 1)]):
             sx = photo_cx + dx * (photo_r + 10)
             sy = photo_cy + dy * (photo_r + 10)
-            draw.ellipse([sx - 9, sy - 9, sx + 9, sy + 9], fill=EMAS)
+            star_color = DONGKER if i % 2 == 0 else MERAH
+            draw.ellipse([sx - 9, sy - 9, sx + 9, sy + 9], fill=star_color)
             import math
             for angle in range(0, 360, 90):
                 rad = math.radians(angle)
@@ -332,7 +341,7 @@ def create_vocal_banner():
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 1240),
         name,
-        fill=KREM,
+        fill=DONGKER_DARK,  # dongker dark
         font=font_name
     )
 
@@ -343,7 +352,7 @@ def create_vocal_banner():
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 1300),
         role,
-        fill=EMAS_LIGHT,
+        fill=DONGKER,  # dongker
         font=font_role
     )
 
@@ -354,12 +363,12 @@ def create_vocal_banner():
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 1348),
         fac,
-        fill=KREM + (180,),
+        fill=(100, 116, 139),  # slate-500
         font=font_fac
     )
 
     # === FOOTER ===
-    draw.line([(120, 1420), (W - 120, 1420)], fill=EMAS + (100,), width=1)
+    draw.line([(120, 1420), (W - 120, 1420)], fill=DONGKER + (60,), width=1)
 
     font_quote = load_font(26, italic=True, display=True)
     quote1 = '"Budaya kui dudu wates, nanging dadi identitas"'
@@ -367,7 +376,7 @@ def create_vocal_banner():
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 1440),
         quote1,
-        fill=KREM + (220,),
+        fill=(71, 85, 105, 230),  # slate-600
         font=font_quote
     )
 
@@ -377,7 +386,7 @@ def create_vocal_banner():
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 1490),
         quote2,
-        fill=KREM + (160,),
+        fill=(100, 116, 139),  # slate-500
         font=font_trans
     )
 
@@ -387,7 +396,7 @@ def create_vocal_banner():
     draw.text(
         ((W - (bbox[2] - bbox[0])) // 2, 1550),
         copy_text,
-        fill=KREM + (140,),
+        fill=DONGKER + (180,),
         font=font_copy
     )
 
