@@ -226,7 +226,7 @@ export function SplashScreen({
                   <img
                     src="/logos/prof-dwi-ima.png"
                     alt="Foto Prof. Dr. Dra. Hj. Dwi Ima Herminingsih, M.Hum"
-                    className="w-full h-full object-cover object-top scale-110"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 {/* Corner stars on photo - alternating colors */}
