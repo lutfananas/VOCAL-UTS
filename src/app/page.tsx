@@ -8,9 +8,16 @@ import { LoginView } from "@/components/cbt-speaking/login-view";
 import { InstructionsView } from "@/components/cbt-speaking/instructions-view";
 import { ExamView, ExamQuestionClient } from "@/components/cbt-speaking/exam-view";
 import { SubmitSuccessView } from "@/components/cbt-speaking/submit-success-view";
+import { SplashScreen } from "@/components/cbt-speaking/splash-screen";
 import { Loader2 } from "lucide-react";
 
-type ViewState = "loading" | "login" | "instructions" | "exam" | "submitted";
+type ViewState =
+  | "splash"
+  | "loading"
+  | "login"
+  | "instructions"
+  | "exam"
+  | "submitted";
 
 interface StudentInfo {
   id: string;
@@ -36,7 +43,7 @@ interface SubmitSummary {
 }
 
 export default function Home() {
-  const [view, setView] = useState<ViewState>("loading");
+  const [view, setView] = useState<ViewState>("splash");
   const [student, setStudent] = useState<StudentInfo | null>(null);
   const [questions, setQuestions] = useState<ExamQuestionClient[]>([]);
   const [submitSummary, setSubmitSummary] = useState<SubmitSummary | null>(null);
@@ -59,11 +66,15 @@ export default function Home() {
     }
   }, []);
 
-  // Check session on mount using inline async IIFE pattern.
-  // This avoids the "setState in effect" lint rule because the setState
-  // calls happen inside the async function body (after await), not
-  // synchronously in the effect body.
+  // Called when splash screen finishes (or is skipped)
+  const handleSplashFinished = useCallback(() => {
+    setView("loading");
+  }, []);
+
+  // Check session after splash screen finishes.
+  // We use a separate effect that watches for view === "loading".
   useEffect(() => {
+    if (view !== "loading") return;
     let cancelled = false;
     (async () => {
       try {
@@ -102,7 +113,7 @@ export default function Home() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [view]);
 
   const handleLoginSuccess = async (s: StudentInfo) => {
     setStudent(s);
@@ -182,12 +193,19 @@ export default function Home() {
     setView("login");
   };
 
+  // Splash screen (opening berbudaya VOCAL)
+  if (view === "splash") {
+    return <SplashScreen onFinished={handleSplashFinished} />;
+  }
+
   // Loading screen
   if (view === "loading") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-slate-50">
-        <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
-        <p className="text-sm text-slate-500">Memuat sistem ujian...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-3 batik-mega">
+        <Loader2 className="h-8 w-8 animate-spin text-emas" />
+        <p className="text-sm text-sogan-dark font-display italic">
+          Memuat sistem ujian...
+        </p>
       </div>
     );
   }
