@@ -19,16 +19,6 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Progress } from "@/components/ui/progress";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import {
   ArrowLeft,
   Lock,
@@ -694,7 +684,7 @@ export function AdminView({ onExit }: { onExit: () => void }) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <ScrollArea className="max-h-[60vh] rounded-lg border border-slate-200">
+            <div className="max-h-[60vh] min-h-[300px] overflow-y-auto rounded-lg border border-slate-200 batik-scroll mb-4">
               <div className="divide-y divide-slate-100">
                 {filteredStudents?.map((s) => (
                   <button
@@ -759,7 +749,7 @@ export function AdminView({ onExit }: { onExit: () => void }) {
                   </button>
                 ))}
               </div>
-            </ScrollArea>
+            </div>
           </CardContent>
         </Card>
 
