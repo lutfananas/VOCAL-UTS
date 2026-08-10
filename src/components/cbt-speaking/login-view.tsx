@@ -42,9 +42,10 @@ interface LoginViewProps {
     examStatus: string;
     startedAt: string;
   }) => void;
+  onAdminAccess?: () => void;
 }
 
-export function LoginView({ onLoginSuccess }: LoginViewProps) {
+export function LoginView({ onLoginSuccess, onAdminAccess }: LoginViewProps) {
   const [nim, setNim] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -366,10 +367,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
         <div className="text-center mt-4">
           <button
             type="button"
-            onClick={() => {
-              window.location.hash = "admin";
-              window.location.reload();
-            }}
+            onClick={() => onAdminAccess?.()}
             className="text-[10px] text-slate-400 hover:text-dongker transition-colors inline-flex items-center gap-1"
           >
             <ShieldCheck className="h-3 w-3" />

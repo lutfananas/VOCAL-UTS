@@ -73,6 +73,16 @@ export default function Home() {
     setView("loading");
   }, []);
 
+  // Cek URL hash untuk akses admin (#admin) setelah hydration selesai.
+  // Harus di useEffect agar tidak terjadi hydration mismatch
+  // (server tidak bisa akses window.location.hash).
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#admin") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setView("admin");
+    }
+  }, []);
+
   // Check session after splash screen finishes.
   // We use a separate effect that watches for view === "loading".
   useEffect(() => {
@@ -197,23 +207,21 @@ export default function Home() {
 
   // Splash screen (opening berbudaya VOCAL)
   if (view === "splash") {
-    // Cek URL hash untuk akses admin (#admin)
-    if (typeof window !== "undefined" && window.location.hash === "#admin") {
-      return (
-        <AdminView
-          onExit={() => {
-            window.location.hash = "";
-            setView("login");
-          }}
-        />
-      );
-    }
     return <SplashScreen onFinished={handleSplashFinished} />;
   }
 
   // Admin view (dosen panel)
   if (view === "admin") {
-    return <AdminView onExit={() => setView("login")} />;
+    return (
+      <AdminView
+        onExit={() => {
+          if (typeof window !== "undefined" && window.location.hash === "#admin") {
+            window.location.hash = "";
+          }
+          setView("login");
+        }}
+      />
+    );
   }
 
   // Loading screen
@@ -229,7 +237,7 @@ export default function Home() {
   }
 
   if (view === "login" || !student) {
-    return <LoginView onLoginSuccess={handleLoginSuccess} />;
+    return <LoginView onLoginSuccess={handleLoginSuccess} onAdminAccess={() => setView("admin")} />;
   }
 
   if (view === "instructions") {
