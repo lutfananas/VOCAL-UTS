@@ -146,7 +146,7 @@ export function LoginView({ onLoginSuccess, onAdminAccess }: LoginViewProps) {
               variant="outline"
               className="bg-white border-dongker text-dongker-dark font-semibold"
             >
-              ❋ Tahun Akademik 2025/2026 ❋
+              ❋ Tahun Akademik 2026/2027 — Semester Ganjil ❋
             </Badge>
           </div>
         </header>

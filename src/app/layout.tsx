@@ -23,7 +23,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Ujian Speaking CBT - Bahasa Inggris Bisnis (UTW2002)",
   description:
-    "Sistem Ujian Speaking Computer-Based Test (CBT) untuk mata kuliah Bahasa Inggris Bisnis - FISIP S1 Administrasi Publik. Tahun Akademik 2025/2026.",
+    "Sistem Ujian Speaking Computer-Based Test (CBT) untuk mata kuliah Bahasa Inggris Bisnis - FISIP S1 Administrasi Publik. Tahun Akademik 2026/2027 Semester Ganjil.",
   keywords: [
     "CBT",
     "Speaking Exam",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "Bahasa Inggris Bisnis",
     "FISIP",
     "Administrasi Publik",
-    "UTS 2025/2026",
+    "UTS 2026/2027",
   ],
   authors: [{ name: "FISIP - S1 Administrasi Publik" }],
   icons: {

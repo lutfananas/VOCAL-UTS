@@ -132,7 +132,7 @@ export function InstructionsView({
             {EXAM_META.courseName} ({EXAM_META.courseCode})
           </h1>
           <p className="text-sm text-slate-500 italic font-display">
-            Tahun Akademik {EXAM_META.academicYear} &middot; Dosen Penguji:{" "}
+            Tahun Akademik {EXAM_META.academicYear} &middot; Semester {EXAM_META.semester} &middot; Dosen Penguji:{" "}
             {EXAM_META.examiner}
           </p>
           <BatikDivider className="max-w-md mx-auto" />

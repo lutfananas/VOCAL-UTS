@@ -1,6 +1,6 @@
 // ============================================================
 // SOAL UJIAN SPEAKING CBT - Bahasa Inggris Bisnis (UTW2002)
-// UTS 2025/2026 - FISIP S1 Administrasi Publik
+// UTS 2026/2027 Semester Ganjil - FISIP S1 Administrasi Publik
 // Prof. Dr. Dwi Ima H, M.Hum
 // ============================================================
 // Total: 6 Sections, 100 Points, ~35 Menit
@@ -42,12 +42,13 @@ export interface SpeakingQuestion {
 
 export const EXAM_META = {
   title: "UJIAN TENGAH SEMESTER (UTS) - SPEAKING CBT",
-  academicYear: "2025/2026",
+  academicYear: "2026/2027",
+  semester: "Ganjil",
   courseCode: "UTW2002",
   courseName: "Bahasa Inggris Bisnis",
   programStudy: "S1 Administrasi Publik",
   faculty: "FISIP",
-  examiner: "Prof. Dr. Dwi Ima H, M.Hum",
+  examiner: "Prof. Dr. Dwi Ima Herminingsih, M.Hum",
   totalDurationMin: 35,
   totalPoints: 100,
   totalQuestions: 6,

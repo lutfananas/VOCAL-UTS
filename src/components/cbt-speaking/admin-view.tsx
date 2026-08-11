@@ -364,55 +364,64 @@ export function AdminView({ onExit }: { onExit: () => void }) {
     }
   };
 
-  // Export semua data (JSON dengan base64 audio)
+  // Export semua data ke Excel (.xlsx)
   const handleExportAll = async () => {
     try {
-      const res = await fetch(`/api/admin/export?all=true`, {
-        headers: { "x-admin-pass": password },
-      });
-      if (!res.ok) {
-        alert("Gagal export data.");
-        return;
-      }
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `cbt-speaking-all-${new Date()
-        .toISOString()
-        .slice(0, 10)}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      console.error(err);
-      alert("Gagal export.");
-    }
-  };
-
-  // Export per student
-  const handleExportStudent = async (studentId: string, nim: string) => {
-    try {
       const res = await fetch(
-        `/api/admin/export?studentId=${studentId}`,
+        `/api/admin/export-excel?all=true&p=${encodeURIComponent(password)}`,
         { headers: { "x-admin-pass": password } }
       );
       if (!res.ok) {
-        alert("Gagal export.");
+        const errData = await res.json().catch(() => ({}));
+        alert(errData.error || "Gagal export Excel.");
         return;
       }
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `cbt-speaking-${nim}.json`;
+      // Ambil filename dari header Content-Disposition
+      const cd = res.headers.get("Content-Disposition") || "";
+      const match = cd.match(/filename="?([^"]+)"?/);
+      a.download = match ? match[1] : `Nilai-CBT-Speaking-all-${new Date()
+        .toISOString()
+        .slice(0, 10)}.xlsx`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
+      alert("Gagal export Excel.");
+    }
+  };
+
+  // Export per student ke Excel
+  const handleExportStudent = async (studentId: string, nim: string) => {
+    try {
+      const res = await fetch(
+        `/api/admin/export-excel?studentId=${studentId}&p=${encodeURIComponent(password)}`,
+        { headers: { "x-admin-pass": password } }
+      );
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        alert(errData.error || "Gagal export Excel.");
+        return;
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const cd = res.headers.get("Content-Disposition") || "";
+      const match = cd.match(/filename="?([^"]+)"?/);
+      a.download = match ? match[1] : `Nilai-CBT-Speaking-${nim}.xlsx`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+      alert("Gagal export Excel.");
     }
   };
 
@@ -551,7 +560,7 @@ export function AdminView({ onExit }: { onExit: () => void }) {
               className="border-dongker text-dongker hover:bg-dongker/5"
             >
               <Download className="h-4 w-4 mr-1" />
-              Export JSON
+              Export Excel
             </Button>
           </div>
         </header>
@@ -881,7 +890,7 @@ export function AdminView({ onExit }: { onExit: () => void }) {
               className="border-dongker text-dongker hover:bg-dongker/5"
             >
               <Download className="h-4 w-4 mr-1" />
-              <span className="hidden sm:inline">Export Semua</span>
+              <span className="hidden sm:inline">Export Excel Semua</span>
             </Button>
             <Button
               size="sm"
@@ -1089,7 +1098,7 @@ export function AdminView({ onExit }: { onExit: () => void }) {
               </li>
               <li>
                 Untuk arsip, klik <strong>Download Audio</strong> per soal atau{" "}
-                <strong>Export JSON</strong> untuk semua data (termasuk nilai).
+                <strong>Export Excel</strong> untuk semua data (termasuk nilai).
               </li>
             </ol>
           </CardContent>
