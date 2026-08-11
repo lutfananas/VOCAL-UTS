@@ -173,12 +173,15 @@ export function LoginView({ onLoginSuccess, onAdminAccess }: LoginViewProps) {
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-slate-500">Program Studi</div>
                   <div className="col-span-2 font-medium text-slate-800">
-                    S1 Administrasi Publik
+                    S1 Adpub UNITA × S1 PGSD UBHI
+                    <span className="block text-[10px] text-slate-500 font-normal italic mt-0.5">
+                      Program Kolaborasi
+                    </span>
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-slate-500">Fakultas</div>
-                  <div className="col-span-2 font-medium text-slate-800">FISIP</div>
+                  <div className="col-span-2 font-medium text-slate-800">FISIP & FKIP</div>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="col-span-1 text-slate-500">Dosen Penguji</div>
@@ -342,16 +345,28 @@ export function LoginView({ onLoginSuccess, onAdminAccess }: LoginViewProps) {
                       <p className="font-semibold text-dongker-dark mb-2">
                         NIM contoh (database seed):
                       </p>
-                      <div className="grid grid-cols-2 gap-x-3 gap-y-1 font-mono text-slate-600">
-                        <span>220100101 - Ahmad Fauzi</span>
-                        <span>220100102 - Siti Nurhaliza</span>
-                        <span>220100103 - Budi Santoso</span>
-                        <span>220100104 - Dewi Lestari</span>
-                        <span>220100105 - Rizki Pratama</span>
-                        <span>220100106 - Nabila Az-Zahra</span>
+                      <div className="space-y-2">
+                        <div>
+                          <p className="text-[10px] text-dongker font-semibold mb-1">S1 Adpub UNITA:</p>
+                          <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 font-mono text-slate-600">
+                            <span>220100101 - Ahmad Fauzi</span>
+                            <span>220100102 - Siti Nurhaliza</span>
+                            <span>220100103 - Budi Santoso</span>
+                            <span>220100104 - Dewi Lestari</span>
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-merah font-semibold mb-1">S1 PGSD UBHI:</p>
+                          <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 font-mono text-slate-600">
+                            <span>220200101 - Citra Ayu</span>
+                            <span>220200102 - Dimas Aryo</span>
+                            <span>220200103 - Eka Putri</span>
+                            <span>220200104 - Fajar Bayu</span>
+                          </div>
+                        </div>
                       </div>
                       <p className="text-[10px] text-slate-400 mt-2">
-                        Total 25 NIM terdaftar (220100101 - 220100125).
+                        Total 30 NIM terdaftar (15 UNITA: 220100101-115, 15 UBHI: 220200101-115).
                       </p>
                     </div>
                   )}

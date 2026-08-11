@@ -259,7 +259,7 @@ export function SplashScreen({
             Dosen Pengampu Mata Kuliah Bahasa Inggris Bisnis (UTW2002)
           </p>
           <p className="text-[10px] md:text-xs text-slate-500">
-            FISIP &middot; S1 Administrasi Publik &middot; Universitas Tulungagung
+            FISIP & FKIP &middot; S1 Adpub UNITA × S1 PGSD UBHI &middot; Program Kolaborasi
           </p>
         </div>
 

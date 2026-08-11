@@ -1,6 +1,6 @@
 // ============================================================
 // SOAL UJIAN SPEAKING CBT - Bahasa Inggris Bisnis (UTW2002)
-// UTS 2026/2027 Semester Ganjil - FISIP S1 Administrasi Publik
+// UTS 2026/2027 Semester Ganjil - Kolaborasi S1 Adpub UNITA & S1 PGSD UBHI
 // Prof. Dr. Dwi Ima H, M.Hum
 // ============================================================
 // Total: 6 Sections, 100 Points, ~35 Menit
@@ -46,8 +46,8 @@ export const EXAM_META = {
   semester: "Ganjil",
   courseCode: "UTW2002",
   courseName: "Bahasa Inggris Bisnis",
-  programStudy: "S1 Administrasi Publik",
-  faculty: "FISIP",
+  programStudy: "S1 Administrasi Publik UNITA × S1 PGSD UBHI (Kolaborasi)",
+  faculty: "FISIP & FKIP",
   examiner: "Prof. Dr. Dwi Ima Herminingsih, M.Hum",
   totalDurationMin: 35,
   totalPoints: 100,

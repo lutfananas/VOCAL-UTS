@@ -23,7 +23,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Ujian Speaking CBT - Bahasa Inggris Bisnis (UTW2002)",
   description:
-    "Sistem Ujian Speaking Computer-Based Test (CBT) untuk mata kuliah Bahasa Inggris Bisnis - FISIP S1 Administrasi Publik. Tahun Akademik 2026/2027 Semester Ganjil.",
+    "Sistem Ujian Speaking Computer-Based Test (CBT) untuk mata kuliah Bahasa Inggris Bisnis - Kolaborasi S1 Administrasi Publik UNITA & S1 PGSD UBHI. Tahun Akademik 2026/2027 Semester Ganjil.",
   keywords: [
     "CBT",
     "Speaking Exam",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "Administrasi Publik",
     "UTS 2026/2027",
   ],
-  authors: [{ name: "FISIP - S1 Administrasi Publik" }],
+  authors: [{ name: "S1 Adpub UNITA × S1 PGSD UBHI" }],
   icons: {
     icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
   },

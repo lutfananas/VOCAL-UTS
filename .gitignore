@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# cloudflare
+.wrangler
+.mf
+dist
 
 # typescript
 *.tsbuildinfo
@@ -50,5 +54,19 @@ test
 prompt
 
 server.log
+
 # Skills directory
 /skills/
+
+# Database (untuk Cloudflare deploy, database akan pakai Cloudflare D1)
+/db/*.db
+/db/*.db-journal
+
+# Upload folder (file sementara)
+/upload/
+
+# Download folder (file generated)
+/download/
+
+# Scripts temp
+/scripts/__pycache__/
