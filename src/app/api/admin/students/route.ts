@@ -36,34 +36,52 @@ export async function GET(req: NextRequest) {
           durationSeconds: true,
           attemptCount: true,
           recordedAt: true,
+          score: true,
+          scoreMax: true,
+          scoreNotes: true,
+          scoredAt: true,
+          scoredBy: true,
         },
       },
     },
   });
 
   const totalQuestions = SPEAKING_QUESTIONS.length;
+  const totalMaxScore = SPEAKING_QUESTIONS.reduce((sum, q) => sum + q.points, 0);
 
-  const result = students.map((s) => ({
-    id: s.id,
-    nim: s.nim,
-    name: s.name,
-    programStudy: s.programStudy,
-    faculty: s.faculty,
-    courseCode: s.courseCode,
-    courseName: s.courseName,
-    examStatus: s.examStatus,
-    startedAt: s.startedAt,
-    submittedAt: s.submittedAt,
-    answeredCount: s.answers.length,
-    totalQuestions,
-    totalDurationSeconds: s.answers.reduce(
-      (sum, a) => sum + a.durationSeconds,
+  const result = students.map((s) => {
+    const totalScore = s.answers.reduce(
+      (sum, a) => sum + (a.score ?? 0),
       0
-    ),
-    answers: s.answers.sort((a, b) =>
-      a.questionId.localeCompare(b.questionId)
-    ),
-  }));
+    );
+    const scoredCount = s.answers.filter((a) => a.score !== null).length;
+    return {
+      id: s.id,
+      nim: s.nim,
+      name: s.name,
+      programStudy: s.programStudy,
+      faculty: s.faculty,
+      courseCode: s.courseCode,
+      courseName: s.courseName,
+      examStatus: s.examStatus,
+      startedAt: s.startedAt,
+      submittedAt: s.submittedAt,
+      answeredCount: s.answers.length,
+      totalQuestions,
+      totalDurationSeconds: s.answers.reduce(
+        (sum, a) => sum + a.durationSeconds,
+        0
+      ),
+      // Score summary
+      totalScore,
+      totalMaxScore,
+      scoredCount,
+      hasScore: scoredCount > 0,
+      answers: s.answers.sort((a, b) =>
+        a.questionId.localeCompare(b.questionId)
+      ),
+    };
+  });
 
   return NextResponse.json({
     ok: true,
@@ -78,6 +96,7 @@ export async function GET(req: NextRequest) {
       sectionTitle: q.sectionTitle,
       title: q.title,
       points: q.points,
+      evaluationCriteria: q.evaluationCriteria,
     })),
   });
 }

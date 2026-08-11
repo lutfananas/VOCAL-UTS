@@ -52,38 +52,65 @@ export async function GET(req: NextRequest) {
           durationSeconds: true,
           attemptCount: true,
           recordedAt: true,
+          // Score fields
+          score: true,
+          scoreMax: true,
+          scoreNotes: true,
+          scoredAt: true,
+          scoredBy: true,
         },
       },
     },
   });
 
   // Format untuk export
-  const exportData = students.map((s) => ({
-    student: {
-      nim: s.nim,
-      name: s.name,
-      programStudy: s.programStudy,
-      faculty: s.faculty,
-      examStatus: s.examStatus,
-      startedAt: s.startedAt,
-      submittedAt: s.submittedAt,
-    },
-    answers: SPEAKING_QUESTIONS.map((q) => {
-      const ans = s.answers.find((a) => a.questionId === q.id);
-      return {
-        questionId: q.id,
-        sectionTitle: q.sectionTitle,
-        title: q.title,
-        points: q.points,
-        hasAnswer: !!ans,
-        durationSeconds: ans?.durationSeconds ?? 0,
-        attemptCount: ans?.attemptCount ?? 0,
-        recordedAt: ans?.recordedAt ?? null,
-        audioBase64: ans?.audioData ?? null,
-        audioMimeType: ans?.audioMimeType ?? null,
-      };
-    }),
-  }));
+  const exportData = students.map((s) => {
+    const totalScore = s.answers.reduce(
+      (sum, a) => sum + (a.score ?? 0),
+      0
+    );
+    const totalMaxScore = SPEAKING_QUESTIONS.reduce(
+      (sum, q) => sum + q.points,
+      0
+    );
+    return {
+      student: {
+        nim: s.nim,
+        name: s.name,
+        programStudy: s.programStudy,
+        faculty: s.faculty,
+        examStatus: s.examStatus,
+        startedAt: s.startedAt,
+        submittedAt: s.submittedAt,
+        // Score summary
+        totalScore: totalScore.toFixed(2),
+        totalMaxScore,
+        scoredCount: s.answers.filter((a) => a.score !== null).length,
+        totalQuestions: SPEAKING_QUESTIONS.length,
+      },
+      answers: SPEAKING_QUESTIONS.map((q) => {
+        const ans = s.answers.find((a) => a.questionId === q.id);
+        return {
+          questionId: q.id,
+          sectionTitle: q.sectionTitle,
+          title: q.title,
+          points: q.points,
+          hasAnswer: !!ans,
+          durationSeconds: ans?.durationSeconds ?? 0,
+          attemptCount: ans?.attemptCount ?? 0,
+          recordedAt: ans?.recordedAt ?? null,
+          audioBase64: ans?.audioData ?? null,
+          audioMimeType: ans?.audioMimeType ?? null,
+          // Score
+          score: ans?.score ?? null,
+          scoreMax: ans?.scoreMax ?? q.points,
+          scoreNotes: ans?.scoreNotes ?? null,
+          scoredAt: ans?.scoredAt ?? null,
+          scoredBy: ans?.scoredBy ?? null,
+        };
+      }),
+    };
+  });
 
   const filename = all
     ? `cbt-speaking-all-${new Date().toISOString().slice(0, 10)}.json`

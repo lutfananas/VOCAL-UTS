@@ -41,6 +41,12 @@ model SpeakingAnswer {
   durationSeconds Float    // panjang rekaman dalam detik
   attemptCount    Int      @default(1) // jumlah percobaan (re-recording)
   recordedAt      DateTime @default(now())
+  // === Field penilaian oleh dosen ===
+  score           Float?   // nilai yang diberikan dosen (0-100 per soal, atau sesuai bobot)
+  scoreMax        Float    @default(0) // nilai maksimum soal (dari question.points)
+  scoreNotes      String?  // catatan dosen saat menilai
+  scoredAt        DateTime? // waktu penilaian
+  scoredBy        String?  // identifier dosen (default: "admin")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 

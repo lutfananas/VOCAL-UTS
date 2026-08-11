@@ -19,6 +19,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Textarea } from "@/components/ui/textarea";
 import {
   ArrowLeft,
   Lock,
@@ -34,6 +35,7 @@ import {
   Award,
   LogOut,
   Search,
+  Save,
 } from "lucide-react";
 
 interface AdminAnswer {
@@ -41,6 +43,12 @@ interface AdminAnswer {
   durationSeconds: number;
   attemptCount: number;
   recordedAt: string;
+  // Score fields
+  score: number | null;
+  scoreMax: number;
+  scoreNotes: string | null;
+  scoredAt: string | null;
+  scoredBy: string | null;
 }
 
 interface AdminStudent {
@@ -55,6 +63,11 @@ interface AdminStudent {
   answeredCount: number;
   totalQuestions: number;
   totalDurationSeconds: number;
+  // Score summary
+  totalScore: number;
+  totalMaxScore: number;
+  scoredCount: number;
+  hasScore: boolean;
   answers: AdminAnswer[];
 }
 
@@ -64,6 +77,7 @@ interface AdminQuestion {
   sectionTitle: string;
   title: string;
   points: number;
+  evaluationCriteria: string[];
 }
 
 interface AdminData {
@@ -85,6 +99,19 @@ export function AdminView({ onExit }: { onExit: () => void }) {
   const [data, setData] = useState<AdminData | null>(null);
   const [selectedStudent, setSelectedStudent] = useState<AdminStudent | null>(null);
   const [search, setSearch] = useState("");
+  // Score editing state: { [questionId]: { score, notes, saving, saved, error } }
+  const [scoreEdits, setScoreEdits] = useState<
+    Record<
+      string,
+      {
+        score: string;
+        notes: string;
+        saving: boolean;
+        saved: boolean;
+        error: string | null;
+      }
+    >
+  >({});
 
   // Persist password di localStorage (hanya browser, tidak dikirim ke server API selain via header)
   useEffect(() => {
@@ -131,8 +158,171 @@ export function AdminView({ onExit }: { onExit: () => void }) {
     setAuthed(false);
     setData(null);
     setSelectedStudent(null);
+    setScoreEdits({});
     localStorage.removeItem("cbt-admin-pass");
     setPassword("");
+  };
+
+  // Init score edits saat mahasiswa dipilih
+  const handleSelectStudent = (s: AdminStudent) => {
+    setSelectedStudent(s);
+    // Init score edits dengan nilai yang sudah ada (jika sudah pernah dinilai)
+    const initial: typeof scoreEdits = {};
+    s.answers.forEach((a) => {
+      initial[a.questionId] = {
+        score: a.score !== null ? String(a.score) : "",
+        notes: a.scoreNotes ?? "",
+        saving: false,
+        saved: false,
+        error: null,
+      };
+    });
+    setScoreEdits(initial);
+  };
+
+  // Update field score edit
+  const updateScoreEdit = (
+    questionId: string,
+    field: "score" | "notes",
+    value: string
+  ) => {
+    setScoreEdits((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...(prev[questionId] ?? { score: "", notes: "", saving: false, saved: false, error: null }),
+        [field]: value,
+        saved: false, // reset saved state saat ada perubahan
+        error: null,
+      },
+    }));
+  };
+
+  // Save score ke server
+  const handleSaveScore = async (
+    studentId: string,
+    questionId: string,
+    scoreMax: number
+  ) => {
+    const edit = scoreEdits[questionId];
+    if (!edit) return;
+
+    setScoreEdits((prev) => ({
+      ...prev,
+      [questionId]: { ...edit, saving: true, error: null },
+    }));
+
+    try {
+      const scoreValue = edit.score.trim() === "" ? null : parseFloat(edit.score);
+      if (scoreValue !== null && isNaN(scoreValue)) {
+        throw new Error("Nilai harus berupa angka.");
+      }
+
+      const res = await fetch("/api/admin/score", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-pass": password,
+        },
+        body: JSON.stringify({
+          studentId,
+          questionId,
+          scoreMax,
+          score: scoreValue,
+          scoreNotes: edit.notes.trim() || null,
+        }),
+      });
+      const json = await res.json();
+      if (!json.ok) {
+        throw new Error(json.error || "Gagal menyimpan nilai.");
+      }
+
+      // Update local state (selected student + data)
+      setScoreEdits((prev) => ({
+        ...prev,
+        [questionId]: {
+          ...edit,
+          saving: false,
+          saved: true,
+          error: null,
+        },
+      }));
+
+      // Update selectedStudent dengan score baru
+      if (selectedStudent) {
+        const updatedAnswers = selectedStudent.answers.map((a) =>
+          a.questionId === questionId
+            ? {
+                ...a,
+                score: scoreValue,
+                scoreNotes: edit.notes.trim() || null,
+                scoreMax,
+                scoredAt: new Date().toISOString(),
+                scoredBy: "admin",
+              }
+            : a
+        );
+        const totalScore = updatedAnswers.reduce(
+          (sum, a) => sum + (a.score ?? 0),
+          0
+        );
+        const scoredCount = updatedAnswers.filter(
+          (a) => a.score !== null
+        ).length;
+        setSelectedStudent({
+          ...selectedStudent,
+          answers: updatedAnswers,
+          totalScore,
+          scoredCount,
+          hasScore: scoredCount > 0,
+        });
+      }
+
+      // Update data list juga
+      if (data) {
+        const updatedStudents = data.students.map((st) =>
+          st.id === studentId
+            ? {
+                ...st,
+                answers: st.answers.map((a) =>
+                  a.questionId === questionId
+                    ? {
+                        ...a,
+                        score: scoreValue,
+                        scoreNotes: edit.notes.trim() || null,
+                        scoreMax,
+                        scoredAt: new Date().toISOString(),
+                        scoredBy: "admin",
+                      }
+                    : a
+                ),
+                totalScore:
+                  (selectedStudent?.totalScore ?? 0) -
+                  (selectedStudent?.answers.find((a) => a.questionId === questionId)?.score ?? 0) +
+                  (scoreValue ?? 0),
+                scoredCount:
+                  (selectedStudent?.scoredCount ?? 0) +
+                  (scoreValue === null && selectedStudent?.answers.find((a) => a.questionId === questionId)?.score !== null
+                    ? -1
+                    : scoreValue !== null && selectedStudent?.answers.find((a) => a.questionId === questionId)?.score === null
+                    ? 1
+                    : 0),
+                hasScore: true,
+              }
+            : st
+        );
+        setData({ ...data, students: updatedStudents });
+      }
+    } catch (err) {
+      const e = err as Error;
+      setScoreEdits((prev) => ({
+        ...prev,
+        [questionId]: {
+          ...edit,
+          saving: false,
+          error: e.message || "Gagal menyimpan nilai.",
+        },
+      }));
+    }
   };
 
   // Get audio URL untuk playback
@@ -400,6 +590,18 @@ export function AdminView({ onExit }: { onExit: () => void }) {
                   </p>
                 </div>
                 <div>
+                  <p className="text-xs text-slate-500">Total Nilai</p>
+                  <p className="font-bold text-dongker">
+                    {s.totalScore.toFixed(1)} / {s.totalMaxScore}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500">Sudah Dinilai</p>
+                  <p className="text-xs font-semibold text-slate-700">
+                    {s.scoredCount} / {s.totalQuestions} soal
+                  </p>
+                </div>
+                <div>
                   <p className="text-xs text-slate-500">Mulai</p>
                   <p className="text-xs text-slate-700">{fmtDate(s.startedAt)}</p>
                 </div>
@@ -528,16 +730,115 @@ export function AdminView({ onExit }: { onExit: () => void }) {
                           </Button>
                         </div>
 
-                        {/* Catatan penilaian (manual, tidak disimpan) */}
-                        <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-3 text-xs text-amber-900">
-                          <p className="font-semibold mb-1">
-                            📝 Catatan Penilaian:
-                          </p>
-                          <p className="text-amber-800/80">
-                            Anda dapat memberikan nilai berdasarkan kriteria
-                            penilaian soal. Catatan nilai tidak disimpan di
-                            sistem ini — silakan catat di spreadsheet terpisah.
-                          </p>
+                        {/* === FORM PENILAIAN DOSEN === */}
+                        <div className="rounded-lg border-2 border-dongker/30 bg-dongker/5 p-4 space-y-3">
+                          <div className="flex items-center gap-2 text-sm font-semibold text-dongker-dark">
+                            <Award className="h-4 w-4 text-merah" />
+                            Penilaian Dosen
+                            {ans.scoredAt && (
+                              <Badge
+                                variant="outline"
+                                className="ml-auto bg-emerald-50 border-emerald-300 text-emerald-700 text-[10px]"
+                              >
+                                <CheckCircle2 className="h-3 w-3 mr-1" />
+                                Sudah dinilai: {fmtDate(ans.scoredAt)}
+                              </Badge>
+                            )}
+                          </div>
+
+                          {/* Kriteria penilaian (collapsible) */}
+                          {q.evaluationCriteria && q.evaluationCriteria.length > 0 && (
+                            <details className="text-xs">
+                              <summary className="cursor-pointer text-slate-600 hover:text-dongker font-medium">
+                                📋 Lihat kriteria penilaian ({q.evaluationCriteria.length} kriteria, max {q.points} poin)
+                              </summary>
+                              <ul className="mt-2 space-y-1 pl-4 text-slate-600">
+                                {q.evaluationCriteria.map((c, i) => (
+                                  <li key={i} className="list-disc list-inside">
+                                    {c}
+                                  </li>
+                                ))}
+                              </ul>
+                            </details>
+                          )}
+
+                          {/* Input nilai */}
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
+                            <div className="sm:col-span-1 space-y-1">
+                              <label className="text-xs font-medium text-slate-700">
+                                Nilai (maks {q.points})
+                              </label>
+                              <Input
+                                type="number"
+                                step="0.5"
+                                min="0"
+                                max={q.points}
+                                placeholder={`0 - ${q.points}`}
+                                value={scoreEdits[q.id]?.score ?? ""}
+                                onChange={(e) =>
+                                  updateScoreEdit(q.id, "score", e.target.value)
+                                }
+                                className="h-10 border-slate-300 bg-white focus:border-dongker focus:ring-dongker/20 font-mono text-base font-bold"
+                                disabled={scoreEdits[q.id]?.saving}
+                              />
+                            </div>
+                            <div className="sm:col-span-2 space-y-1">
+                              <label className="text-xs font-medium text-slate-700">
+                                Catatan / Komentar (opsional)
+                              </label>
+                              <Textarea
+                                placeholder="Catatan untuk mahasiswa, kelebihan/kekurangan jawaban, saran perbaikan..."
+                                value={scoreEdits[q.id]?.notes ?? ""}
+                                onChange={(e) =>
+                                  updateScoreEdit(q.id, "notes", e.target.value)
+                                }
+                                className="min-h-[60px] max-h-[120px] resize-y border-slate-300 bg-white focus:border-dongker focus:ring-dongker/20 text-sm"
+                                disabled={scoreEdits[q.id]?.saving}
+                                maxLength={2000}
+                              />
+                            </div>
+                          </div>
+
+                          {/* Error / success message */}
+                          {scoreEdits[q.id]?.error && (
+                            <div className="rounded border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-700">
+                              <AlertCircle className="h-3 w-3 inline mr-1" />
+                              {scoreEdits[q.id]?.error}
+                            </div>
+                          )}
+                          {scoreEdits[q.id]?.saved && !scoreEdits[q.id]?.error && (
+                            <div className="rounded border border-emerald-300 bg-emerald-50 px-3 py-2 text-xs text-emerald-700">
+                              <CheckCircle2 className="h-3 w-3 inline mr-1" />
+                              Nilai berhasil disimpan.
+                            </div>
+                          )}
+
+                          {/* Tombol simpan */}
+                          <div className="flex justify-end">
+                            <Button
+                              size="sm"
+                              onClick={() => handleSaveScore(s.id, q.id, q.points)}
+                              disabled={
+                                scoreEdits[q.id]?.saving ||
+                                (scoreEdits[q.id]?.score === (ans.score !== null ? String(ans.score) : "") &&
+                                  scoreEdits[q.id]?.notes === (ans.scoreNotes ?? "") &&
+                                  !scoreEdits[q.id]?.saved)
+                              }
+                              className="btn-batik"
+                            >
+                              {scoreEdits[q.id]?.saving ? (
+                                <>
+                                  <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                                  Menyimpan...
+                                </>
+                              ) : (
+                                <>
+                                  <Save className="h-3 w-3 mr-1" />
+                                  Simpan Nilai
+                                </>
+                              )}
+                            </Button>
+                          </div>
                         </div>
                       </>
                     ) : (
@@ -689,7 +990,7 @@ export function AdminView({ onExit }: { onExit: () => void }) {
                 {filteredStudents?.map((s) => (
                   <button
                     key={s.id}
-                    onClick={() => setSelectedStudent(s)}
+                    onClick={() => handleSelectStudent(s)}
                     className={`w-full text-left p-4 hover:bg-slate-50 transition-colors flex items-center gap-4 ${
                       s.examStatus === "SUBMITTED" ? "" : "opacity-60"
                     }`}
@@ -770,16 +1071,25 @@ export function AdminView({ onExit }: { onExit: () => void }) {
                 untuk mendengarkan.
               </li>
               <li>
-                Berikan nilai berdasarkan kriteria penilaian setiap section
-                (lihat di halaman detail).
+                Berikan nilai di kolom <strong>Nilai (maks X poin)</strong>{" "}
+                sesuai kriteria penilaian (klik "Lihat kriteria penilaian" untuk
+                detail).
+              </li>
+              <li>
+                Tambahkan <strong>Catatan/Komentar</strong> opsional untuk
+                feedback ke mahasiswa.
+              </li>
+              <li>
+                Klik tombol <strong>Simpan Nilai</strong> untuk menyimpan. Nilai
+                tersimpan di database dan langsung terhitung di total nilai.
+              </li>
+              <li>
+                Anda bisa ubah nilai kapan saja - cukup edit dan klik Simpan
+                Nilai lagi.
               </li>
               <li>
                 Untuk arsip, klik <strong>Download Audio</strong> per soal atau{" "}
-                <strong>Export JSON</strong> untuk semua data.
-              </li>
-              <li>
-                Catat nilai di spreadsheet terpisah (sistem ini tidak
-                menyimpan nilai, hanya rekaman jawaban).
+                <strong>Export JSON</strong> untuk semua data (termasuk nilai).
               </li>
             </ol>
           </CardContent>
