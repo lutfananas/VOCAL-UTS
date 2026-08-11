@@ -3,12 +3,15 @@
 // Simpan / update jawaban speaking mahasiswa
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/session";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { SPEAKING_QUESTIONS } from "@/lib/questions";
+
+export const runtime = 'edge';
 
 const MAX_AUDIO_MB = 15; // batas ukuran audio per soal
 
 export async function POST(req: NextRequest) {
+  const db = await getDb();
   const session = await getSession();
   if (!session) {
     return NextResponse.json(

@@ -2,7 +2,9 @@
 // Stream audio jawaban untuk diputar di browser
 // Password bisa via header (x-admin-pass) atau query param (p) untuk <audio> element
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
+
+export const runtime = 'edge';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
@@ -18,6 +20,7 @@ function checkAuth(req: NextRequest): boolean {
 }
 
 export async function GET(req: NextRequest) {
+  const db = await getDb();
   if (!checkAuth(req)) {
     return NextResponse.json(
       { ok: false, error: "Unauthorized." },
@@ -70,6 +73,7 @@ export async function GET(req: NextRequest) {
 
 // HEAD untuk cek apakah audio ada (tanpa download full)
 export async function HEAD(req: NextRequest) {
+  const db = await getDb();
   if (!checkAuth(req)) {
     return new NextResponse(null, { status: 401 });
   }

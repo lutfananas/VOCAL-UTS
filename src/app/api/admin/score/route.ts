@@ -2,12 +2,15 @@
 // Body: { studentId, questionId, scoreMax, score?, scoreNotes? }
 // Simpan / update nilai dosen per jawaban
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { SPEAKING_QUESTIONS } from "@/lib/questions";
+
+export const runtime = 'edge';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
 export async function POST(req: NextRequest) {
+  const db = await getDb();
   const adminPass = req.headers.get("x-admin-pass");
   if (adminPass !== ADMIN_PASSWORD) {
     return NextResponse.json(
@@ -120,6 +123,7 @@ export async function POST(req: NextRequest) {
 
 // GET /api/admin/score?studentId=X&questionId=Y - ambil score untuk 1 jawaban
 export async function GET(req: NextRequest) {
+  const db = await getDb();
   const adminPass = req.headers.get("x-admin-pass");
   if (adminPass !== ADMIN_PASSWORD) {
     return NextResponse.json(

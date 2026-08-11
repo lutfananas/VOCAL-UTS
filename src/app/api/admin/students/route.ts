@@ -2,12 +2,15 @@
 // Mengembalikan daftar semua mahasiswa + jumlah jawaban + status
 // Akses: butuh admin password (X-Admin-Pass header)
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { SPEAKING_QUESTIONS } from "@/lib/questions";
+
+export const runtime = 'edge';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
 export async function GET(req: NextRequest) {
+  const db = await getDb();
   // Verifikasi admin password
   const adminPass = req.headers.get("x-admin-pass");
   if (adminPass !== ADMIN_PASSWORD) {

@@ -1,0 +1,13 @@
+name = "uts-vocal"
+compatibility_date = "2025-02-04"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "vocal-cbt-db"
+database_id = "e93906e5-8d04-4af0-96e2-619fe361dea9"
+
+[vars]
+ADMIN_PASSWORD = "admin123"
+DATABASE_URL = "file:/tmp/custom.db"

@@ -2,7 +2,8 @@
 // UTS 2025/2026 - FISIP S1 Administrasi Publik
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["schemaEngineDriverAdapters"]
 }
 
 datasource db {

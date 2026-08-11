@@ -1,7 +1,7 @@
 // Server-side session helper untuk autentikasi NIM
 // Disimpan di cookie (HttpOnly) untuk keamanan
 import { cookies } from "next/headers";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 
 export const SESSION_COOKIE = "cbt_speaking_session";
 
@@ -19,6 +19,7 @@ export async function getSession(): Promise<SessionData | null> {
   try {
     const parsed = JSON.parse(raw) as SessionData;
     // Verify student still exists and hasn't been deleted
+    const db = await getDb();
     const student = await db.student.findUnique({
       where: { id: parsed.studentId },
       select: { id: true, nim: true, name: true, examStatus: true },

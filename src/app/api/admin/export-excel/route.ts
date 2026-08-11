@@ -1,9 +1,11 @@
 // GET /api/admin/export-excel?studentId=X (atau ?all=true untuk semua)
 // Export data jawaban + nilai ke format Excel (.xlsx)
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { SPEAKING_QUESTIONS, EXAM_META } from "@/lib/questions";
 import * as XLSX from "xlsx";
+
+export const runtime = 'edge';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
@@ -35,6 +37,7 @@ function fmtDuration(sec: number): string {
 }
 
 export async function GET(req: NextRequest) {
+  const db = await getDb();
   if (!checkAuth(req)) {
     return NextResponse.json(
       { ok: false, error: "Unauthorized." },

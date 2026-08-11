@@ -2,12 +2,15 @@
 // Export jawaban sebagai JSON (metadata + base64 audio)
 // Untuk dosen yang ingin download data lengkap
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { SPEAKING_QUESTIONS } from "@/lib/questions";
+
+export const runtime = 'edge';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
 export async function GET(req: NextRequest) {
+  const db = await getDb();
   const adminPass = req.headers.get("x-admin-pass");
   if (adminPass !== ADMIN_PASSWORD) {
     return NextResponse.json(

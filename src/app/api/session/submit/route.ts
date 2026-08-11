@@ -1,10 +1,13 @@
 // POST /api/session/submit - finalisasi ujian
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/session";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { SPEAKING_QUESTIONS } from "@/lib/questions";
 
+export const runtime = 'edge';
+
 export async function POST() {
+  const db = await getDb();
   const session = await getSession();
   if (!session) {
     return NextResponse.json(

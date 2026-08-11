@@ -2,10 +2,13 @@
 // Body: { nim: string }
 // Verifikasi NIM terdaftar di database, buat session
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { setSession, clearSession } from "@/lib/session";
 
+export const runtime = 'edge';
+
 export async function POST(req: NextRequest) {
+  const db = await getDb();
   try {
     const body = await req.json();
     const nim = String(body?.nim ?? "").trim();
@@ -113,6 +116,7 @@ export async function POST(req: NextRequest) {
 
 // GET /api/auth/me - check session
 export async function GET() {
+  const db = await getDb();
   const { getSession } = await import("@/lib/session");
   const session = await getSession();
   if (!session) {
